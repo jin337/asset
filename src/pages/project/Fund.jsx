@@ -1,8 +1,6 @@
-import { } from 'react'
+import {} from 'react'
 
 const Fund = () => {
-  return (
-    <>Fund</>
-  )
+  return <>Fund</>
 }
 export default Fund

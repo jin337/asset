@@ -28,8 +28,7 @@ const Menu = ({ items, header, select }) => {
             className={`text-center p-2 mt-2 cursor-pointer hover:scale-105 hover:text-blue-500 ${
               active === item.itemKey ? 'text-blue-500 scale-105' : ''
             }`}
-            onClick={() => selectHandler(item)}
-          >
+            onClick={() => selectHandler(item)}>
             {item.icon}
             <div className='text-sm font-bold mt-1'>{item.text}</div>
           </li>

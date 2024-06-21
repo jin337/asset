@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 // 初始状态
 const initialState = {
-  title: "",
+  title: '',
 }
 
 export const project = createSlice({

@@ -1,8 +1,6 @@
-import { } from 'react'
+import {} from 'react'
 
 const Standard = () => {
-  return (
-    <>Standard</>
-  )
+  return <>Standard</>
 }
 export default Standard

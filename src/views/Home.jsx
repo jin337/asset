@@ -90,7 +90,7 @@ const Home = () => {
     setTheme(key)
 
     const body = document.body
-    if (key == 'light') {
+    if (key === 'light') {
       body.removeAttribute('arco-theme')
     } else {
       body.setAttribute('arco-theme', 'dark')
@@ -112,7 +112,7 @@ const Home = () => {
       body.setAttribute('arco-theme', 'dark')
     }
 
-    const key = theme == 'light' ? 'dark' : 'light'
+    const key = theme === 'light' ? 'dark' : 'light'
     setTheme(key)
     dispatch(switchTheme(key))
   }
@@ -134,22 +134,12 @@ const Home = () => {
       </Sider>
       <Layout>
         <Header className='dark:bg-[#16161a] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
-          <Row
-            gutter={24}
-            align='center'
-          >
+          <Row gutter={24} align='center'>
             <Col span={12}>
               {project.title ? (
                 <div className='flex items-center'>
-                  <IconClose
-                    className='cursor-pointer'
-                    style={{ color: '#999' }}
-                    onClick={clearTitle}
-                  />
-                  <Typography.Text
-                    type='secondary'
-                    bold
-                  >
+                  <IconClose className='cursor-pointer' style={{ color: '#999' }} onClick={clearTitle} />
+                  <Typography.Text type='secondary' bold>
                     &nbsp;{project.title}
                   </Typography.Text>
                 </div>
@@ -157,27 +147,12 @@ const Home = () => {
                 <div className='text-xl font-bold'>项目资管平台</div>
               )}
             </Col>
-            <Col
-              span={12}
-              className='text-right'
-            >
+            <Col span={12} className='text-right'>
               <Space size='medium'>
-                <Button
-                  shape='round'
-                  icon={<IconSearch />}
-                />
-                <Button
-                  shape='round'
-                  icon={<IconNotification />}
-                />
-                <Button
-                  shape='round'
-                  icon={<IconSun />} onClick={checkTheme}
-                />
-                <Avatar
-                  size={32}
-                  style={{ backgroundColor: '#3370ff' }}
-                >
+                <Button shape='round' icon={<IconSearch />} />
+                <Button shape='round' icon={<IconNotification />} />
+                <Button shape='round' icon={<IconSun />} onClick={checkTheme} />
+                <Avatar size={32} style={{ backgroundColor: '#3370ff' }}>
                   A
                 </Avatar>
               </Space>

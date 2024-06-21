@@ -35,9 +35,9 @@ export default defineConfig({
         entryFileNames: 'assets/chunk/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
         manualChunks: {
-          'chunk-vendor': ['react', 'react-dom','react-router-dom','react-redux']
-        }
-      }
-    }
-  }
+          'chunk-vendor': ['react', 'react-dom', 'react-router-dom', 'react-redux'],
+        },
+      },
+    },
+  },
 })

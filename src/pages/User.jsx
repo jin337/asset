@@ -1,8 +1,6 @@
-import { } from 'react'
+import {} from 'react'
 
 const User = () => {
-  return (
-    <>User</>
-  )
+  return <>User</>
 }
 export default User

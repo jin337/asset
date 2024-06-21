@@ -1,16 +1,16 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom'
 
-import Home from './views/Home';
-import Dashboard from './pages/Dashboard';
-import Project from './pages/Project';
-import Standard from './pages/Standard';
-import User from './pages/User';
-import Analyse from './pages/Analyse';
-import System from './pages/System';
+import Home from './views/Home'
+import Dashboard from './pages/Dashboard'
+import Project from './pages/Project'
+import Standard from './pages/Standard'
+import User from './pages/User'
+import Analyse from './pages/Analyse'
+import System from './pages/System'
 
-import ProjectDashboard from './pages/project/ProjectDashboard';
-import Overview from './pages/project/Overview';
-import Fund from './pages/project/Fund';
+import ProjectDashboard from './pages/project/ProjectDashboard'
+import Overview from './pages/project/Overview'
+import Fund from './pages/project/Fund'
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: '/project-dashboard',
@@ -27,34 +27,34 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/project-dashboard/overview',
-            element: <Overview />
+            element: <Overview />,
           },
           {
             path: '/project-dashboard/Fund',
-            element: <Fund />
-          }
-        ]
+            element: <Fund />,
+          },
+        ],
       },
       {
         path: '/project',
-        element: <Project />
+        element: <Project />,
       },
       {
         path: '/standard',
-        element: <Standard />
+        element: <Standard />,
       },
       {
         path: '/user',
-        element: <User />
+        element: <User />,
       },
       {
         path: '/analyse',
-        element: <Analyse />
+        element: <Analyse />,
       },
       {
         path: '/system',
-        element: <System />
-      }
-    ]
-  }
+        element: <System />,
+      },
+    ],
+  },
 ])

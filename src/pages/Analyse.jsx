@@ -1,8 +1,6 @@
-import { } from 'react'
+import {} from 'react'
 
 const Analyse = () => {
-  return (
-    <>Analyse</>
-  )
+  return <>Analyse</>
 }
 export default Analyse

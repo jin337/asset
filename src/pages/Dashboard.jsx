@@ -1,8 +1,6 @@
-import { } from 'react'
+import {} from 'react'
 
 const Dashboard = () => {
-  return (
-    <>Dashboard</>
-  )
+  return <>Dashboard</>
 }
 export default Dashboard
