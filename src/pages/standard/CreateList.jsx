@@ -34,7 +34,9 @@ const CreateList = () => {
 
   const dropList = (
     <Menu>
-      <Menu.Item key='1'>编辑</Menu.Item>
+      <Menu.Item key='1' onClick={() => setVisible(true)}>
+        编辑
+      </Menu.Item>
       <Menu.Item key='2' onClick={() => setVisible1(true)}>
         配置
       </Menu.Item>
