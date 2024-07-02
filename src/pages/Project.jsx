@@ -154,7 +154,7 @@ const Project = () => {
           </Col>
         </Row>
 
-        <Table className='mt-5' columns={columns} data={data} />
+        <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
       </Card>
 
       <Modal
