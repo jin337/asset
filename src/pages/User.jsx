@@ -117,11 +117,7 @@ const User = () => {
         focusLock={true}
         okText='提交'
         cancelText='取消'>
-        <Form
-          form={form}
-          labelCol={{ style: { flexBasis: 120 } }}
-          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}
-          requiredSymbol={false}>
+        <Form form={form} labelCol={{ style: { flexBasis: 100 } }} wrapperCol={{ style: { flexBasis: 'calc(100% - 100px)' } }}>
           <FormItem label='用户账号' field='key1' rules={[{ required: true }]}>
             <Input placeholder='输入' allowClear />
           </FormItem>
@@ -131,7 +127,7 @@ const User = () => {
           <FormItem label='角色' field='key5' rules={[{ required: true }]}>
             <Select options={options} allowClear />
           </FormItem>
-          <FormItem label='状态' field='key12'>
+          <FormItem label='状态' field='key12' rules={[{ required: true }]}>
             <Switch checkedText='开' uncheckedText='关' />
           </FormItem>
         </Form>

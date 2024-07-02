@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid, Card, Button, Table, Dropdown, Menu, Form, Input, Select, Modal } from '@arco-design/web-react'
+import { Grid, Card, Button, Table, Dropdown, Menu, Form, Input, Cascader, Modal } from '@arco-design/web-react'
 import { IconPlus, IconExport, IconMore, IconSearch } from '@arco-design/web-react/icon'
 
 const { Row, Col } = Grid
@@ -20,6 +20,12 @@ const Standard = () => {
     {
       label: 'one',
       value: 0,
+      children: [
+        {
+          label: 'one-1',
+          value: '0-1',
+        },
+      ],
     },
     {
       label: 'two',
@@ -100,7 +106,7 @@ const Standard = () => {
           <Col span={22}>
             <Form layout='inline'>
               <FormItem label='建设类型' field='key2'>
-                <Select style={{ width: 150 }} options={options} allowClear />
+                <Cascader style={{ width: 150 }} options={options} allowClear />
               </FormItem>
               <FormItem field='key4'>
                 <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
@@ -127,17 +133,17 @@ const Standard = () => {
         cancelText='取消'>
         <Form
           form={form}
+          autoComplete='off'
           labelCol={{ style: { flexBasis: 120 } }}
-          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}
-          requiredSymbol={false}>
-          <FormItem label='标准编码' field='key1' rules={[{ required: true }]}>
+          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}>
+          <FormItem label='标准编码' field='key1' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <FormItem label='标准名称' field='key2' rules={[{ required: true }]}>
+          <FormItem label='标准名称' field='key2' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <FormItem label='建设类型' field='key5' rules={[{ required: true }]}>
-            <Select options={options} allowClear />
+          <FormItem label='建设类型' field='key5' required>
+            <Cascader options={options} allowClear />
           </FormItem>
           <FormItem label='备注' field='key12'>
             <TextArea placeholder='请输入内容' allowClear />

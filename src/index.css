@@ -11,3 +11,7 @@ body {
   color: var(--color-text-1);
   color-scheme: dark;
 }
+/* 表单内*号换行问题解决方案 */
+strong {
+  display: inline-block;
+}

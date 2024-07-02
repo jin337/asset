@@ -1,8 +1,22 @@
 import { useState } from 'react'
-import { Grid, Card, Button, Table, Dropdown, Menu, Form, Input, Select, Modal } from '@arco-design/web-react'
+import {
+  Grid,
+  Card,
+  Button,
+  Table,
+  Dropdown,
+  Menu,
+  Form,
+  Input,
+  Select,
+  Modal,
+  DatePicker,
+  Cascader,
+} from '@arco-design/web-react'
 import { IconPlus, IconExport, IconMore, IconSearch } from '@arco-design/web-react/icon'
 
 const { Row, Col } = Grid
+const { RangePicker, QuarterPicker } = DatePicker
 const FormItem = Form.Item
 const TextArea = Input.TextArea
 
@@ -24,6 +38,12 @@ const Project = () => {
     {
       label: 'one',
       value: 0,
+      children: [
+        {
+          label: 'one-1',
+          value: '0-1',
+        },
+      ],
     },
     {
       label: 'two',
@@ -119,7 +139,7 @@ const Project = () => {
                 <Select style={{ width: 150 }} options={options} allowClear />
               </FormItem>
               <FormItem label='建设类型' field='key2'>
-                <Select style={{ width: 150 }} options={options} allowClear />
+                <Cascader style={{ width: 150 }} options={options} allowClear />
               </FormItem>
               <FormItem label='建设方式' field='key3'>
                 <Select style={{ width: 150 }} options={options} allowClear />
@@ -147,37 +167,33 @@ const Project = () => {
         focusLock={true}
         okText='提交'
         cancelText='取消'>
-        <Form
-          form={form}
-          labelCol={{ style: { flexBasis: 120 } }}
-          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}
-          requiredSymbol={false}>
-          <FormItem label='项目编码' field='key1' rules={[{ required: true }]}>
+        <Form form={form} labelCol={{ style: { flexBasis: 120 } }} wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}>
+          <FormItem label='项目编码' field='key1' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <FormItem label='项目名称' field='key2' rules={[{ required: true }]}>
+          <FormItem label='项目名称' field='key2' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
           <Row>
             <Col span={11}>
-              <FormItem label='项目类别' field='key3' rules={[{ required: true }]}>
+              <FormItem label='项目类别' field='key3' required>
                 <Select options={options} allowClear />
               </FormItem>
             </Col>
             <Col span={11} offset={2}>
-              <FormItem label='建设方式' field='key4' rules={[{ required: true }]}>
+              <FormItem label='建设方式' field='key4' required>
                 <Select options={options} allowClear />
               </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span={11}>
-              <FormItem label='建设类型' field='key5' rules={[{ required: true }]}>
-                <Select options={options} allowClear />
+              <FormItem label='建设类型' field='key5' required>
+                <Cascader options={options} allowClear />
               </FormItem>
             </Col>
             <Col span={11} offset={2}>
-              <FormItem label='优先级' field='key6' rules={[{ required: true }]}>
+              <FormItem label='优先级' field='key6' required>
                 <Select options={options} allowClear />
               </FormItem>
             </Col>
@@ -189,7 +205,7 @@ const Project = () => {
               </FormItem>
             </Col>
             <Col span={11} offset={2}>
-              <FormItem label='负责人' field='key8' rules={[{ required: true }]}>
+              <FormItem label='负责人' field='key8' required>
                 <Select options={options} allowClear />
               </FormItem>
             </Col>
@@ -197,12 +213,12 @@ const Project = () => {
           <Row>
             <Col span={11}>
               <FormItem label='建设年限' field='key9'>
-                <Select options={options} allowClear />
+                <RangePicker mode='year' allowClear />
               </FormItem>
             </Col>
             <Col span={11} offset={2}>
               <FormItem label='计划开工时间' field='key10'>
-                <Select options={options} allowClear />
+                <QuarterPicker allowClear style={{ width: '100%' }} />
               </FormItem>
             </Col>
           </Row>
