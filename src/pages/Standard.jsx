@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Grid, Card, Button, Table, Dropdown, Menu, Form, Input, Cascader, Modal } from '@arco-design/web-react'
 import { IconPlus, IconExport, IconMore, IconSearch } from '@arco-design/web-react/icon'
 
@@ -7,11 +8,15 @@ const FormItem = Form.Item
 const TextArea = Input.TextArea
 
 const Standard = () => {
+  const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
   const [form] = Form.useForm()
+
   const dropList = (
     <Menu>
-      <Menu.Item key='1'>编辑</Menu.Item>
+      <Menu.Item key='1' onClick={() => setVisible(true)}>
+        编辑
+      </Menu.Item>
       <Menu.Item key='2'>删除</Menu.Item>
     </Menu>
   )
@@ -49,7 +54,11 @@ const Standard = () => {
       title: '标准名称',
       dataIndex: 'name2',
       render: (text) => {
-        return <div className='ml-6 text-sm text-blue-500 font-bold cursor-pointer'>{text}</div>
+        return (
+          <div className='ml-6 text-sm text-blue-500 font-bold cursor-pointer' onClick={() => navigate('/standard/create-list')}>
+            {text}
+          </div>
+        )
       },
     },
     {
@@ -90,8 +99,8 @@ const Standard = () => {
       <Row align='center'>
         <Col span={12}>
           <div className='flex items-center'>
-            <div className='text-2xl font-bold'>标准管理</div>
-            <div className='ml-6 text-base text-blue-500 font-bold'>全部标准（2）</div>
+            <div className='text-2xl font-bold mr-6'>标准管理</div>
+            <div className='text-base text-blue-500 font-bold'>全部标准（2）</div>
           </div>
         </Col>
         <Col span={12} className='text-right'>

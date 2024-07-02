@@ -12,7 +12,7 @@ import legacy from '@vitejs/plugin-legacy'
 export default defineConfig({
   server: {
     open: true,
-    port: 8081,
+    port: 8082,
     host: '0.0.0.0',
   },
   css: {

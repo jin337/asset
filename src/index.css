@@ -4,7 +4,7 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #f7f8fa;
+  --color-bg-1: #f7f8fa;
 }
 body {
   background-color: var(--color-bg-1);

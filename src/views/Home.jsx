@@ -17,6 +17,7 @@ import {
   IconNotification,
   IconSun,
   IconClose,
+  IconMoon,
 } from '@arco-design/web-react/icon'
 
 const { Sider, Header, Content } = Layout
@@ -151,7 +152,7 @@ const Home = () => {
               <Space size='medium'>
                 <Button shape='round' icon={<IconSearch />} />
                 <Button shape='round' icon={<IconNotification />} />
-                <Button shape='round' icon={<IconSun />} onClick={checkTheme} />
+                <Button shape='round' icon={theme === 'light' ? <IconMoon /> : <IconSun />} onClick={checkTheme} />
                 <Avatar size={32} style={{ backgroundColor: '#3370ff' }}>
                   A
                 </Avatar>

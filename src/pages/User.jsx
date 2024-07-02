@@ -11,7 +11,9 @@ const User = () => {
 
   const dropList = (
     <Menu>
-      <Menu.Item key='1'>编辑</Menu.Item>
+      <Menu.Item key='1' onClick={() => setVisible(true)}>
+        编辑
+      </Menu.Item>
       <Menu.Item key='2'>删除</Menu.Item>
     </Menu>
   )
@@ -118,16 +120,16 @@ const User = () => {
         okText='提交'
         cancelText='取消'>
         <Form form={form} labelCol={{ style: { flexBasis: 100 } }} wrapperCol={{ style: { flexBasis: 'calc(100% - 100px)' } }}>
-          <FormItem label='用户账号' field='key1' rules={[{ required: true }]}>
+          <FormItem label='用户账号' field='key1' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <FormItem label='用户名' field='key2' rules={[{ required: true }]}>
+          <FormItem label='用户名' field='key2' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <FormItem label='角色' field='key5' rules={[{ required: true }]}>
+          <FormItem label='角色' field='key5' required>
             <Select options={options} allowClear />
           </FormItem>
-          <FormItem label='状态' field='key12' rules={[{ required: true }]}>
+          <FormItem label='状态' field='key12' required>
             <Switch checkedText='开' uncheckedText='关' />
           </FormItem>
         </Form>

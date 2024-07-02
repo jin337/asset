@@ -120,8 +120,8 @@ const Project = () => {
       <Row align='center'>
         <Col span={12}>
           <div className='flex items-center'>
-            <div className='text-2xl font-bold'>项目管理</div>
-            <div className='ml-6 text-base text-blue-500 font-bold'>全部项目（2）</div>
+            <div className='text-2xl font-bold mr-6'>项目管理</div>
+            <div className='text-base text-blue-500 font-bold'>全部项目（2）</div>
           </div>
         </Col>
         <Col span={12} className='text-right'>
