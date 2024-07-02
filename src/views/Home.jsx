@@ -95,7 +95,7 @@ const Home = () => {
     } else {
       body.setAttribute('arco-theme', 'dark')
     }
-  }, [])
+  }, [common.theme])
 
   // 清除header标题
   const clearTitle = () => {

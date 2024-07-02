@@ -153,10 +153,10 @@ const Project = () => {
           wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}
           requiredSymbol={false}>
           <FormItem label='项目编码' field='key1' rules={[{ required: true }]}>
-            <Input suffix={<IconSearch />} placeholder='输入' allowClear />
+            <Input placeholder='输入' allowClear />
           </FormItem>
           <FormItem label='项目名称' field='key2' rules={[{ required: true }]}>
-            <Input suffix={<IconSearch />} placeholder='输入' allowClear />
+            <Input placeholder='输入' allowClear />
           </FormItem>
           <Row>
             <Col span={11}>
@@ -207,7 +207,7 @@ const Project = () => {
             </Col>
           </Row>
           <FormItem label='建设地点' field='key11'>
-            <Input suffix={<IconSearch />} placeholder='输入' allowClear />
+            <Input placeholder='输入' allowClear />
           </FormItem>
           <FormItem label='规模及内容描述' field='key12'>
             <TextArea placeholder='请输入内容' allowClear />
