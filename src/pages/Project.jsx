@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Grid,
   Card,
@@ -21,8 +22,9 @@ const FormItem = Form.Item
 const TextArea = Input.TextArea
 
 const Project = () => {
-  const [visible, setVisible] = useState(false)
+  const navigate = useNavigate()
   const [form] = Form.useForm()
+  const [visible, setVisible] = useState(false)
 
   const dropList = (
     <Menu>
@@ -57,13 +59,17 @@ const Project = () => {
   const columns = [
     {
       title: '项目编码',
-      dataIndex: 'owner',
+      dataIndex: 'name',
     },
     {
       title: '项目名称',
       dataIndex: 'name1',
       render: (text) => {
-        return <div className='ml-6 text-sm text-blue-500 font-bold cursor-pointer'>{text}</div>
+        return (
+          <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/project-dashboard/overview')}>
+            {text}
+          </div>
+        )
       },
     },
     {
@@ -97,7 +103,7 @@ const Project = () => {
   const data = [
     {
       key: '1',
-      owner: 'XM1001',
+      name: 'XM1001',
       name1: '纬六路、经十八路、恒竞路建设工程',
       name2: '新建',
       name3: '代建',
@@ -106,7 +112,7 @@ const Project = () => {
     },
     {
       key: '2',
-      owner: 'XM1002',
+      name: 'XM1002',
       name1: '尧辰路以东、栖霞大道以南地块配套新三路一期工程 ',
       name2: '续建',
       name3: '自建',

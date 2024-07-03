@@ -119,7 +119,7 @@ const Home = () => {
   }
 
   return (
-    <Layout className='w-screen h-screen'>
+    <Layout className='w-screen h-screen bg-neutral-100 dark:bg-neutral-950'>
       <Sider width={80}>
         <Menu
           select={menuSelect}
@@ -134,7 +134,7 @@ const Home = () => {
         />
       </Sider>
       <Layout>
-        <Header className='dark:bg-[#16161a] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
+        <Header className='dark:bg-[#232324] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
           <Row gutter={24} align='center'>
             <Col span={12}>
               {project.title ? (

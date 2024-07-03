@@ -20,7 +20,6 @@ const Standard = () => {
       <Menu.Item key='2'>删除</Menu.Item>
     </Menu>
   )
-
   const options = [
     {
       label: 'one',
@@ -44,7 +43,7 @@ const Standard = () => {
   const columns = [
     {
       title: '标准编码',
-      dataIndex: 'owner',
+      dataIndex: 'name',
     },
     {
       title: '建设类型',
@@ -55,7 +54,7 @@ const Standard = () => {
       dataIndex: 'name2',
       render: (text) => {
         return (
-          <div className='ml-6 text-sm text-blue-500 font-bold cursor-pointer' onClick={() => navigate('/standard/create-list')}>
+          <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/standard/create-list')}>
             {text}
           </div>
         )
@@ -80,14 +79,14 @@ const Standard = () => {
   const data = [
     {
       key: '1',
-      owner: 'BZ1001',
+      name: 'BZ1001',
       name1: '市政基础设施/市政道路',
       name2: '市政道路标准1',
       name3: '已发布',
     },
     {
       key: '2',
-      owner: 'BZ1002',
+      name: 'BZ1002',
       name1: '载体办公设施建设 ',
       name2: '载体办公设施建设1',
       name3: '待发布',

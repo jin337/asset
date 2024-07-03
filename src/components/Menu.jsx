@@ -30,7 +30,7 @@ const Menu = ({ items, header, select }) => {
             }`}
             onClick={() => selectHandler(item)}>
             {item.icon}
-            <div className='text-sm font-bold mt-1'>{item.text}</div>
+            <div className='text-sm mt-1'>{item.text}</div>
           </li>
         ))}
       </ul>
@@ -38,4 +38,3 @@ const Menu = ({ items, header, select }) => {
   )
 }
 export default Menu
-// text-blue-500

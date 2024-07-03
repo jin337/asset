@@ -11,6 +11,11 @@ import System from './pages/System'
 import ProjectDashboard from './pages/project/ProjectDashboard'
 import Overview from './pages/project/Overview'
 import Fund from './pages/project/Fund'
+import Subentry from './pages/project/Subentry'
+import Contract from './pages/project/Contract'
+import Accord from './pages/project/Accord'
+import Member from './pages/project/Member'
+import Setting from './pages/project/Setting'
 // 标准
 import CreateList from './pages/standard/CreateList'
 
@@ -34,6 +39,26 @@ export const router = createBrowserRouter([
           {
             path: '/project-dashboard/Fund',
             element: <Fund />,
+          },
+          {
+            path: '/project-dashboard/subentry',
+            element: <Subentry />,
+          },
+          {
+            path: '/project-dashboard/contract',
+            element: <Contract />,
+          },
+          {
+            path: '/project-dashboard/accord',
+            element: <Accord />,
+          },
+          {
+            path: '/project-dashboard/member',
+            element: <Member />,
+          },
+          {
+            path: '/project-dashboard/setting',
+            element: <Setting />,
           },
         ],
       },

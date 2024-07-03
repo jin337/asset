@@ -34,7 +34,7 @@ const User = () => {
   const columns = [
     {
       title: '用户账号',
-      dataIndex: 'owner',
+      dataIndex: 'name',
     },
     {
       title: '用户名',
@@ -44,7 +44,7 @@ const User = () => {
       title: '角色',
       dataIndex: 'name2',
       render: (text) => {
-        return <div className='ml-6 text-sm text-blue-500 font-bold cursor-pointer'>{text}</div>
+        return <div className='text-sm text-blue-500 cursor-pointer'>{text}</div>
       },
     },
     {
@@ -66,14 +66,14 @@ const User = () => {
   const data = [
     {
       key: '1',
-      owner: 'admin',
+      name: 'admin',
       name1: '张三',
       name2: '管理员',
       name3: '正常',
     },
     {
       key: '2',
-      owner: 'BZ1002',
+      name: 'BZ1002',
       name1: '管理员 ',
       name2: '资管员',
       name3: '正常',

@@ -85,7 +85,7 @@ const CreateList = () => {
       title: '依据项名称',
       dataIndex: 'name1',
       render: (text) => {
-        return <div className='ml-6 text-sm text-blue-500 font-bold cursor-pointer'>{text}</div>
+        return <div className='text-sm text-blue-500 font-bold cursor-pointer'>{text}</div>
       },
     },
     {
