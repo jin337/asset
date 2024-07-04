@@ -230,7 +230,7 @@ const CreateList = () => {
             className='mt-2'
             blockNode
             onSelect={onSelectTree}
-            selectedKeys={['1-1']}
+            defaultSelectedKeys={['1']}
             treeData={treeData}
             renderExtra={(node) => {
               return (

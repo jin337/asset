@@ -11,7 +11,7 @@ const Menu = ({ items, header, select }) => {
 
   const selectHandler = (e) => {
     setActive(e.itemKey)
-    navigate(e.link)
+    navigate(e.path)
   }
 
   return (

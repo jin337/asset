@@ -73,7 +73,7 @@ const Accord = () => {
             className='mt-2'
             blockNode
             onSelect={onSelectTree}
-            selectedKeys={['1-1']}
+            defaultSelectedKeys={['1']}
             treeData={treeData}
             renderExtra={() => (
               <IconCheckCircleFill style={{ position: 'absolute', right: 8, top: 10, color: '#3b82f6' }} />

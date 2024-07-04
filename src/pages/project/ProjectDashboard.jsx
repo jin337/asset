@@ -35,7 +35,7 @@ const itemsSider = [
     itemKey: 'accord',
     text: '依据',
     icon: <IconSettings />,
-    path: '/project-dashboard/accord',
+    path: '/project-dashboard/accord/document',
   },
   {
     itemKey: 'member',
@@ -61,9 +61,9 @@ const ProjectDashboard = () => {
       let key = location.pathname
       let item = itemsSider.find((e) => e.path === key)
       if (!item) {
-        item = itemsSider[0]
+        item = itemsSider.find((e) => key.includes(e.path))
       }
-      setSelectKey([item.itemKey])
+      item && setSelectKey([item.itemKey])
     }
   }, [location])
 

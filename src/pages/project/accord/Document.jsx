@@ -1,6 +1,17 @@
 import { useState } from 'react'
 import { Card, Input, Button, Form, Space, Checkbox, Upload } from '@arco-design/web-react'
-import { IconFile, IconEdit, IconFilePdf, IconShareExternal } from '@arco-design/web-react/icon'
+import {
+  IconFile,
+  IconEdit,
+  IconFilePdf,
+  IconShareExternal,
+  IconCheckCircle,
+  IconLoop,
+  IconCloud,
+  IconScan,
+  IconDelete,
+  IconDownload,
+} from '@arco-design/web-react/icon'
 
 const FormItem = Form.Item
 const Document = () => {
@@ -91,25 +102,65 @@ const Document = () => {
           </div>
           <div className='ml-6'>
             <div className='mt-1 mb-2 text-sm'>请上传批复文件的盖章电子件</div>
-            <Checkbox onChange={onChangeAll} checked={checkAll} indeterminate={indeterminate}>
-              <span className='text-sm ml-1'>
-                全选（{selectValue.length}/{PDFList.length}）
-              </span>
-            </Checkbox>
-            <div className='mt-4'>
+            <div className='flex justify-between'>
+              <Checkbox onChange={onChangeAll} checked={checkAll} indeterminate={indeterminate}>
+                <span className='text-sm ml-1'>
+                  全选（{selectValue.length}/{PDFList.length}）
+                </span>
+              </Checkbox>
+              <Space size='large'>
+                {!selectValue.length && (
+                  <>
+                    <Button type='primary' size='small' shape='round' icon={<IconScan />}>
+                      扫描
+                    </Button>
+                    <Button type='primary' size='small' shape='round' icon={<IconCloud />}>
+                      上传
+                    </Button>
+                  </>
+                )}
+                <Button type='primary' size='small' shape='round' icon={<IconCheckCircle />}>
+                  OA审批单
+                </Button>
+                {selectValue.length > 0 ? (
+                  <>
+                    <Button type='secondary' size='small' shape='round' icon={<IconDelete />}>
+                      删除
+                    </Button>
+                    {selectValue.length === 1 ? (
+                      <Button type='secondary' size='small' shape='round' icon={<IconEdit />}>
+                        重命名
+                      </Button>
+                    ) : null}
+                    <Button type='secondary' size='small' shape='round' icon={<IconDownload />}>
+                      下载
+                    </Button>
+                  </>
+                ) : (
+                  <Button type='secondary' size='small' shape='round' icon={<IconLoop />}>
+                    刷新
+                  </Button>
+                )}
+              </Space>
+            </div>
+            <div className='mt-4 checkall'>
               <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
                 {PDFList.map((item) => (
-                  <Checkbox className='w-1/5' style={{ marginRight: 0, paddingLeft: 0 }} key={item.key} value={item.key}>
-                    {({ checked }) => (
-                      <div className={`text-center m-2 p-4 border ${checked ? 'bg-blue-200 border-blue-500' : 'border-white'}`}>
-                        <div className='text-6xl'>{item.icon}</div>
-                        <div className='truncate text-xs my-1'>{item.name}</div>
-                        <div className='truncate text-xs text-neutral-400'>{item.size}</div>
+                  <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
+                    <div className='text-center'>
+                      <div className='text-6xl'>{item.icon}</div>
+                      <div className='truncate text-xs leading-6'>
+                        {selectValue.length === 1 && selectValue[0] === item.key ? (
+                          <Input defaultValue={item.name} size='mini' />
+                        ) : (
+                          item.name
+                        )}
                       </div>
-                    )}
+                      <div className='truncate text-xs text-neutral-400'>{item.size}</div>
+                    </div>
                   </Checkbox>
                 ))}
-                <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '2rem' }}>
+                <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '1rem' }}>
                   <Upload listType='picture-card' action='/'>
                     <div className='arco-upload-trigger-picture'>
                       <div className='arco-upload-trigger-picture-text'>

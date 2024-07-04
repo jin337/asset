@@ -29,37 +29,37 @@ const itemsSider = [
     itemKey: 'dashboard',
     text: '工作台',
     icon: <IconDesktop style={{ fontSize: '24px' }} />,
-    link: '/dashboard',
+    path: '/dashboard',
   },
   {
     itemKey: 'project',
     text: '项目',
     icon: <IconApps style={{ fontSize: '24px' }} />,
-    link: '/project',
+    path: '/project',
   },
   {
     itemKey: 'standard',
     text: '标准',
     icon: <IconFile style={{ fontSize: '24px' }} />,
-    link: '/standard',
+    path: '/standard',
   },
   {
     itemKey: 'user',
     text: '用户',
     icon: <IconUser style={{ fontSize: '24px' }} />,
-    link: '/user',
+    path: '/user',
   },
   {
     itemKey: 'analyse',
     text: '分析',
     icon: <IconExperiment style={{ fontSize: '24px' }} />,
-    link: '/analyse',
+    path: '/analyse',
   },
   {
     itemKey: 'system',
     text: '系统',
     icon: <IconSettings style={{ fontSize: '24px' }} />,
-    link: '/system',
+    path: '/system',
   },
 ]
 
@@ -76,9 +76,9 @@ const Home = () => {
   useEffect(() => {
     if (location.pathname) {
       let key = location.pathname
-      let item = itemsSider.find((e) => e.link === key)
+      let item = itemsSider.find((e) => e.path === key)
       if (!item) {
-        item = itemsSider.find((e) => key.includes(e.link))
+        item = itemsSider.find((e) => key.includes(e.path))
       }
       item && setMenuSelect(item.itemKey)
     }

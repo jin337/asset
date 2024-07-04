@@ -470,7 +470,7 @@ const Contract = () => {
             <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
               {PDFList.map((item) =>
                 isList ? (
-                  <Checkbox key={item.key} value={item.key} checked={item.checked} className='w-full mb-1'>
+                  <Checkbox key={item.key} value={item.key} className='w-full mb-1'>
                     <div className='flex items-center p-1 mb-1'>
                       <div className='text-5xl'>{item.icon}</div>
                       <div className='ml-2 w-11/12'>
