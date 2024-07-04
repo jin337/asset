@@ -1,8 +1,9 @@
 import {} from 'react'
 import { Button, Card, Avatar, Table, Space } from '@arco-design/web-react'
 import { IconEdit, IconPlus, IconSettings } from '@arco-design/web-react/icon'
+import { useState } from 'react'
 
-const gridCardList = [
+const CardList = [
   {
     key: 1,
     icon: (
@@ -40,7 +41,77 @@ const gridCardList = [
     type: null,
   },
 ]
+const CardList1 = [
+  {
+    key: 1,
+    icon: (
+      <Avatar>
+        <IconSettings className='text-2xl' />
+      </Avatar>
+    ),
+    title: '立项投资估算金额',
+    price: 373,
+    unit: '万元',
+  },
+  {
+    key: 2,
+    icon: (
+      <Avatar>
+        <IconSettings className='text-2xl' />
+      </Avatar>
+    ),
+    title: '批复投资金额',
+    price: 360,
+    unit: '万元',
+  },
+  {
+    key: 3,
+    icon: (
+      <Avatar>
+        <IconSettings className='text-2xl' />
+      </Avatar>
+    ),
+    title: '建设资金',
+    price: 100,
+    unit: '万元',
+  },
+  {
+    key: 4,
+    icon: (
+      <Avatar>
+        <IconSettings className='text-2xl' />
+      </Avatar>
+    ),
+    title: '代建管理费',
+    price: 100,
+    unit: '万元',
+  },
+  {
+    key: 5,
+    icon: (
+      <Avatar>
+        <IconSettings className='text-2xl' />
+      </Avatar>
+    ),
+    title: '垫付金额',
+    price: 100,
+    unit: '万元',
+  },
+  {
+    key: 6,
+    icon: (
+      <Avatar>
+        <IconSettings className='text-2xl' />
+      </Avatar>
+    ),
+    title: '进账金额',
+    price: 100,
+    unit: '万元',
+  },
+]
 const Fund = () => {
+  const [type] = useState(1) // 1 or 0
+  const [gridCardList] = useState(type ? CardList : CardList1)
   const columns = [
     {
       title: '年度',
@@ -166,6 +237,124 @@ const Fund = () => {
       name8: '100.00',
     },
   ]
+  const columnsIncome = [
+    {
+      title: '序号',
+      dataIndex: 'index',
+      render: (text, item, index) => index + 1,
+    },
+    {
+      title: '款项类型',
+      dataIndex: 'name1',
+    },
+    {
+      title: '委托方',
+      dataIndex: 'name2',
+    },
+    {
+      title: '进账日期',
+      dataIndex: 'name3',
+    },
+    {
+      title: '备注',
+      dataIndex: 'name4',
+    },
+    {
+      title: '进账金额(万元)',
+      dataIndex: 'name5',
+    },
+    {
+      title: '操作',
+      dataIndex: 'operate',
+      align: 'center',
+      render: () => (
+        <Button type='text' size='mini'>
+          查看
+        </Button>
+      ),
+    },
+  ]
+  const dataIncome = [
+    {
+      key: 1,
+      name1: '预付款',
+      name2: '供应商1',
+      name3: '2023-3-1',
+      name4: '已签订合同，未达到付款条件',
+      name5: '42.47',
+    },
+    {
+      key: 2,
+      name1: '进度款',
+      name2: '供应商2',
+      name3: '2023-3-1',
+      name4: '40%',
+      name5: '133.97',
+    },
+    {
+      key: 3,
+      name1: '建筑工程',
+      name2: '供应商3',
+      name3: '2023-3-1',
+      name4: '0%',
+      name5: '100.00',
+    },
+    {
+      key: 4,
+      name1: '安装工程',
+      name2: '供应商4',
+      name3: '2023-3-1',
+      name4: '20%',
+      name5: '200.00',
+    },
+    {
+      key: 5,
+      name1: '监理',
+      name2: '供应商5',
+      name3: '2023-3-1',
+      name4: '30%',
+      name5: '130.01',
+    },
+  ]
+  const columnsDisburse = [
+    {
+      title: '序号',
+      dataIndex: 'index',
+      render: (text, item, index) => index + 1,
+    },
+    {
+      title: '付款市批单据号',
+      dataIndex: 'name1',
+    },
+    {
+      title: '付款日期',
+      dataIndex: 'name2',
+    },
+    {
+      title: '付款说明',
+      dataIndex: 'name3',
+    },
+    {
+      title: '本次付款金额(万元)',
+      dataIndex: 'name4',
+    },
+  ]
+  const dataDisburse = [
+    {
+      key: 1,
+      name1: 'FK-20230501-001',
+      name2: '2023-5-1',
+      name3: '已付部分进度款59.84万',
+      name4: '59.84',
+    },
+    {
+      key: 2,
+      name1: 'FK-20230602-002',
+      name2: '2023-6-2',
+      name3: '已达到付款条件(30万的80%)',
+      name4: '24',
+    },
+  ]
 
   // 合计
   function summary(currentData) {
@@ -217,14 +406,14 @@ const Fund = () => {
 
       <div className='flex mt-5'>
         {gridCardList.map((item) => (
-          <Card bordered={false} key={item.key} className='w-1/3'>
+          <Card bordered={false} key={item.key} className={`w-1/${gridCardList.length}`}>
             <div className='flex items-center'>
               {item.icon}
               <div className='ml-3'>
-                <div className='mb-1'>{item.title}</div>
+                <div className='mb-1 text-xs'>{item.title}</div>
                 <div>
                   <span className='text-xl font-bold'>{item.type ? item.type : item.price}</span>
-                  <span className='ml-2'>{item.unit}</span>
+                  <span className='ml-2 text-xs'>{item.unit}</span>
                 </div>
               </div>
             </div>
@@ -232,26 +421,37 @@ const Fund = () => {
         ))}
       </div>
 
-      <Card
-        bordered={false}
-        className='mt-5'
-        title='年度投资信息'
-        extra={
-          <Button type='primary' size='mini' icon={<IconPlus />}>
-            新增投资
-          </Button>
-        }>
-        <Table
-          border={{
-            wrapper: true,
-            cell: true,
-          }}
-          columns={columns}
-          data={data}
-          summary={summary}
-          pagination={{ showTotal: true, pageSize: 10, current: 1 }}
-        />
-      </Card>
+      {type ? (
+        <Card
+          bordered={false}
+          className='mt-5'
+          title='年度投资信息'
+          extra={
+            <Button type='primary' size='mini' icon={<IconPlus />}>
+              新增投资
+            </Button>
+          }>
+          <Table
+            border={{
+              wrapper: true,
+              cell: true,
+            }}
+            columns={columns}
+            data={data}
+            summary={summary}
+            pagination={{ showTotal: true, pageSize: 10, current: 1 }}
+          />
+        </Card>
+      ) : (
+        <>
+          <Card bordered={false} className='mt-5' title='进账'>
+            <Table columns={columnsIncome} data={dataIncome} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
+          </Card>
+          <Card bordered={false} className='mt-5' title='支出'>
+            <Table columns={columnsDisburse} data={dataDisburse} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
+          </Card>
+        </>
+      )}
     </>
   )
 }

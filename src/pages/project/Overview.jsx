@@ -145,10 +145,10 @@ const Overview = () => {
             <div className='flex items-center'>
               {item.icon}
               <div className='ml-3'>
-                <div className='mb-1'>{item.title}</div>
+                <div className='mb-1 text-xs'>{item.title}</div>
                 <div>
                   <span className='text-xl font-bold'>{item.type ? item.type : item.price}</span>
-                  <span className='ml-2'>{item.unit}</span>
+                  <span className='ml-2 text-xs'>{item.unit}</span>
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@ const Overview = () => {
                 {item.icon}
                 <div className='ml-3'>
                   <div className='mb-1'>{item.title}</div>
-                  <div className='mt-2'>形象进度</div>
+                  <div className='mt-2 text-xs'>形象进度</div>
                   <div className='text-xl font-bold'>{item.type}</div>
                 </div>
               </div>

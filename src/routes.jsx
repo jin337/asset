@@ -16,6 +16,9 @@ import Contract from './pages/project/Contract'
 import Accord from './pages/project/Accord'
 import Member from './pages/project/Member'
 import Setting from './pages/project/Setting'
+
+import Construction from './pages/project/accord/Construction'
+import Document from './pages/project/accord/Document'
 // 标准
 import CreateList from './pages/standard/CreateList'
 
@@ -51,6 +54,16 @@ export const router = createBrowserRouter([
           {
             path: '/project-dashboard/accord',
             element: <Accord />,
+            children: [
+              {
+                path: '/project-dashboard/accord/document',
+                element: <Document />,
+              },
+              {
+                path: '/project-dashboard/accord/construction',
+                element: <Construction />,
+              },
+            ],
           },
           {
             path: '/project-dashboard/member',

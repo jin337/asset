@@ -12,7 +12,6 @@ import {
   Space,
   Checkbox,
   Divider,
-  Typography,
 } from '@arco-design/web-react'
 import {
   IconPlus,
@@ -420,7 +419,7 @@ const Contract = () => {
         <div className='flex justify-between'>
           <Space size='large'>
             <Button type='primary' size='small' shape='round' icon={<IconScan />}>
-              扫程
+              扫描
             </Button>
             <Button type='primary' size='small' shape='round' icon={<IconCloud />}>
               上传
@@ -452,19 +451,19 @@ const Contract = () => {
                       <div className={`flex items-center p-1 mb-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
                         <div className='text-5xl'>{item.icon}</div>
                         <div className='ml-2'>
-                          <Typography.Ellipsis className='text-sm'>{item.name}</Typography.Ellipsis>
-                          <Typography.Ellipsis className='text-xs text-neutral-400 mt-1'>{item.size}</Typography.Ellipsis>
+                          <div className='truncate text-sm'>{item.name}</div>
+                          <div className='truncate text-xs text-neutral-400 mt-1'>{item.size}</div>
                         </div>
                       </div>
                     )}
                   </Checkbox>
                 ) : (
-                  <Checkbox className='mb-5 w-1/6' key={item.key} value={item.key}>
+                  <Checkbox className='w-1/6' style={{ marginRight: 0, paddingLeft: 0 }} key={item.key} value={item.key}>
                     {({ checked }) => (
-                      <div className={`flex flex-col items-center p-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
+                      <div className={`text-center m-1 p-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
                         <div className='text-7xl'>{item.icon}</div>
-                        <Typography.Ellipsis className='w-full text-xs my-1'>{item.name}</Typography.Ellipsis>
-                        <Typography.Ellipsis className='w-full text-xs text-neutral-400'>{item.size}</Typography.Ellipsis>
+                        <div className='truncate text-xs my-1'>{item.name}</div>
+                        <div className='truncate text-xs text-neutral-400'>{item.size}</div>
                       </div>
                     )}
                   </Checkbox>
