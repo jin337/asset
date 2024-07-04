@@ -54,30 +54,31 @@ const itemsSider = [
 const ProjectDashboard = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [selectedKey, setSelectKey] = useState()
+  const [selectedKey, setSelectKey] = useState([])
 
   useEffect(() => {
     if (location.pathname) {
       let key = location.pathname
       let item = itemsSider.find((e) => e.path === key)
       if (!item) {
-        item = itemsSider[0].itemKey
+        item = itemsSider[0]
       }
-      item && setSelectKey(item.itemKey)
+      setSelectKey([item.itemKey])
     }
   }, [location])
 
   const onClickMenuItem = (key) => {
+    setSelectKey([key])
+
     const item = itemsSider.find((e) => e.itemKey === key)
     if (item && item.path) {
-      setSelectKey(item.itemKey)
       navigate(item.path)
     }
   }
   return (
     <Layout className='h-full'>
       <Sider width={120}>
-        <Menu defaultSelectedKeys={selectedKey} onClickMenuItem={onClickMenuItem}>
+        <Menu selectedKeys={selectedKey} onClickMenuItem={onClickMenuItem}>
           {itemsSider.map((item) => (
             <MenuItem key={item.itemKey}>
               {item.icon}
@@ -87,7 +88,7 @@ const ProjectDashboard = () => {
         </Menu>
       </Sider>
 
-      <Content className='m-5'>
+      <Content className='p-5'>
         <Outlet />
       </Content>
     </Layout>

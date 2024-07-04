@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { addTitle } from '../store/reducers/project'
 
 const Menu = ({ items, header, select }) => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const [active, setActive] = useState(select)
 
   useEffect(() => {
@@ -13,7 +10,6 @@ const Menu = ({ items, header, select }) => {
   }, [select])
 
   const selectHandler = (e) => {
-    dispatch(addTitle(null))
     setActive(e.itemKey)
     navigate(e.link)
   }

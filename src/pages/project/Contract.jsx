@@ -59,7 +59,9 @@ const Contract = () => {
       dataIndex: 'name',
       render: (text) => {
         return (
-          <div className='text-sm text-blue-500 cursor-pointer' onClick={() => setVisible2(true)}>
+          <div
+            className='text-sm text-blue-500 cursor-pointer'
+            onClick={() => window.open('https://www.aconvert.com/samples/sample.pdf', '_blank')}>
             {text}
           </div>
         )
@@ -175,7 +177,13 @@ const Contract = () => {
       title: '付款审批单据号',
       dataIndex: 'name',
       render: (text) => {
-        return <div className='text-sm text-blue-500 cursor-pointer'>{text}</div>
+        return (
+          <div
+            className='text-sm text-blue-500 cursor-pointer'
+            onClick={() => window.open('https://www.aconvert.com/samples/sample.pdf', '_blank')}>
+            {text}
+          </div>
+        )
       },
     },
     {
@@ -274,49 +282,49 @@ const Contract = () => {
   const PDFList = [
     {
       key: 1,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001111111111111',
       size: '51.02KBkkkkkkkkkkkkkkkkkkkkkkkkk',
     },
     {
       key: 2,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
     {
       key: 3,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
     {
       key: 4,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
     {
       key: 5,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
     {
       key: 6,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
     {
       key: 7,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
     {
       key: 8,
-      icon: <IconFilePdf className='text-7xl' />,
+      icon: <IconFilePdf />,
       name: 'FK-20230501-001',
       size: '51.02KB',
     },
@@ -441,8 +449,8 @@ const Contract = () => {
                 isList ? (
                   <Checkbox key={item.key} value={item.key} className='w-full'>
                     {({ checked }) => (
-                      <div className={`flex items-center p-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
-                        {item.icon}
+                      <div className={`flex items-center p-1 mb-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
+                        <div className='text-5xl'>{item.icon}</div>
                         <div className='ml-2'>
                           <Typography.Ellipsis className='text-sm'>{item.name}</Typography.Ellipsis>
                           <Typography.Ellipsis className='text-xs text-neutral-400 mt-1'>{item.size}</Typography.Ellipsis>
@@ -454,7 +462,7 @@ const Contract = () => {
                   <Checkbox className='mb-5 w-1/6' key={item.key} value={item.key}>
                     {({ checked }) => (
                       <div className={`flex flex-col items-center p-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
-                        {item.icon}
+                        <div className='text-7xl'>{item.icon}</div>
                         <Typography.Ellipsis className='w-full text-xs my-1'>{item.name}</Typography.Ellipsis>
                         <Typography.Ellipsis className='w-full text-xs text-neutral-400'>{item.size}</Typography.Ellipsis>
                       </div>

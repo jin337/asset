@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { addTitle } from '../store/reducers/project'
 import { switchTheme } from '../store/reducers/common'
 
 import { Layout, Image, Grid, Space, Avatar, Button, Typography } from '@arco-design/web-react'
@@ -100,7 +99,6 @@ const Home = () => {
 
   // 清除header标题
   const clearTitle = () => {
-    dispatch(addTitle(null))
     navigate('/project')
   }
 
@@ -160,7 +158,7 @@ const Home = () => {
             </Col>
           </Row>
         </Header>
-        <Content>
+        <Content className='overflow-y-auto'>
           <Outlet />
         </Content>
       </Layout>
