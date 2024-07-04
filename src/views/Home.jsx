@@ -4,7 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from '../store/reducers/common'
 
-import { Layout, Image, Grid, Space, Avatar, Button } from '@arco-design/web-react'
+import { Layout, Image, Grid, Space, Avatar, Button, Breadcrumb, Popover, Input, List } from '@arco-design/web-react'
 import {
   IconDesktop,
   IconUser,
@@ -18,6 +18,8 @@ import {
   IconClose,
   IconMoon,
   IconMenu,
+  IconDown,
+  IconCopy,
 } from '@arco-design/web-react/icon'
 
 const { Sider, Header, Content } = Layout
@@ -63,7 +65,6 @@ const itemsSider = [
     path: '/system',
   },
 ]
-
 const Home = () => {
   const dispatch = useDispatch()
   const location = useLocation()
@@ -71,6 +72,7 @@ const Home = () => {
   const [menuSelect, setMenuSelect] = useState()
   const [theme, setTheme] = useState()
   const [collapse, setCollapse] = useState(false)
+  const [isProject, setIsProject] = useState(false)
 
   // 判断导航选中
   useEffect(() => {
@@ -80,6 +82,7 @@ const Home = () => {
       if (!item) {
         item = itemsSider.find((e) => key.includes(e.path))
       }
+      setIsProject(key.includes('/project-dashboard/'))
       item && setMenuSelect(item.itemKey)
     }
   }, [location])
@@ -110,7 +113,29 @@ const Home = () => {
     setTheme(key)
     dispatch(switchTheme(key))
   }
-
+  const content = (
+    <>
+      <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
+      <List
+        size='small'
+        bordered={false}
+        pagination={{ pageSize: 3 }}
+        dataSource={[
+          'Beijing Bytedance Technology Co., Ltd.',
+          'Bytedance Technology Co., Ltd.',
+          'Beijing Toutiao Technology Co., Ltd.',
+          'Beijing Volcengine Technology Co., Ltd.',
+          'China Beijing Bytedance Technology Co., Ltd.',
+        ]}
+        render={(item, index) => (
+          <List.Item key={index}>
+            <IconCopy className='mr-1' />
+            {item}
+          </List.Item>
+        )}
+      />
+    </>
+  )
   return (
     <Layout className='w-screen h-screen bg-neutral-100 dark:bg-neutral-950'>
       <Sider width={80} collapsible trigger={null} collapsed={collapse} collapsedWidth={0}>
@@ -130,14 +155,26 @@ const Home = () => {
         <Header className='dark:bg-[#232324] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
           <Row gutter={24} align='center'>
             <Col span={12}>
-              <div className='flex items-center'>
-                {collapse ? (
-                  <IconMenu className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
-                ) : (
-                  <IconClose className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
-                )}
+              {isProject ? (
+                <div className='flex items-center'>
+                  {collapse ? (
+                    <IconMenu className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
+                  ) : (
+                    <IconClose className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
+                  )}
+                  <Breadcrumb maxCount='3'>
+                    <Breadcrumb.Item>项目</Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                      纬六路、经十八路、恒竞路建设工程
+                      <Popover position='bl' content={content} defaultPopupVisible={true} unmountOnExit={false}>
+                        <IconDown className='ml-1 cursor-pointer' />
+                      </Popover>
+                    </Breadcrumb.Item>
+                  </Breadcrumb>
+                </div>
+              ) : (
                 <div className='text-xl font-bold'>项目资管平台</div>
-              </div>
+              )}
             </Col>
             <Col span={12} className='text-right'>
               <Space size='medium'>
