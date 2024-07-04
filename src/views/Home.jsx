@@ -166,7 +166,7 @@ const Home = () => {
                     <Breadcrumb.Item>项目</Breadcrumb.Item>
                     <Breadcrumb.Item>
                       纬六路、经十八路、恒竞路建设工程
-                      <Popover position='bl' content={content} defaultPopupVisible={true} unmountOnExit={false}>
+                      <Popover position='bl' content={content} unmountOnExit={false}>
                         <IconDown className='ml-1 cursor-pointer' />
                       </Popover>
                     </Breadcrumb.Item>
