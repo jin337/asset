@@ -15,6 +15,7 @@ const Construction = () => {
   const [selectValue, setSelectValue] = useState([])
   const [indeterminate, setIndeterminate] = useState(false)
   const [checkAll, setCheckAll] = useState(false)
+  const [rename, setRename] = useState(false)
 
   const PDFList = [
     {
@@ -114,7 +115,7 @@ const Construction = () => {
                   删除
                 </Button>
                 {selectValue.length === 1 ? (
-                  <Button type='secondary' size='small' shape='round' icon={<IconEdit />}>
+                  <Button type='secondary' size='small' shape='round' icon={<IconEdit />} onClick={() => setRename(!rename)}>
                     重命名
                   </Button>
                 ) : null}
@@ -138,7 +139,7 @@ const Construction = () => {
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
                     <div className='truncate text-xs leading-6 mt-2'>
-                      {selectValue.length === 1 && selectValue[0] === item.key ? (
+                      {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                         <Input defaultValue={item.name} size='mini' />
                       ) : (
                         item.name
@@ -166,7 +167,7 @@ const Construction = () => {
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
                     <div className='truncate text-xs leading-6 mt-2'>
-                      {selectValue.length === 1 && selectValue[0] === item.key ? (
+                      {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                         <Input defaultValue={item.name} size='mini' />
                       ) : (
                         item.name
@@ -194,7 +195,7 @@ const Construction = () => {
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
                     <div className='truncate text-xs leading-6 mt-2'>
-                      {selectValue.length === 1 && selectValue[0] === item.key ? (
+                      {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                         <Input defaultValue={item.name} size='mini' />
                       ) : (
                         item.name

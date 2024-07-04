@@ -21,6 +21,7 @@ const Document = () => {
   const [selectValue, setSelectValue] = useState([])
   const [indeterminate, setIndeterminate] = useState(false)
   const [checkAll, setCheckAll] = useState(false)
+  const [rename, setRename] = useState(false)
 
   const PDFList = [
     {
@@ -128,7 +129,7 @@ const Document = () => {
                       删除
                     </Button>
                     {selectValue.length === 1 ? (
-                      <Button type='secondary' size='small' shape='round' icon={<IconEdit />}>
+                      <Button type='secondary' size='small' shape='round' icon={<IconEdit />} onClick={() => setRename(!rename)}>
                         重命名
                       </Button>
                     ) : null}
@@ -150,7 +151,7 @@ const Document = () => {
                     <div className='text-center'>
                       <div className='text-6xl'>{item.icon}</div>
                       <div className='truncate text-xs leading-6'>
-                        {selectValue.length === 1 && selectValue[0] === item.key ? (
+                        {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                           <Input defaultValue={item.name} size='mini' />
                         ) : (
                           item.name

@@ -39,6 +39,7 @@ const Contract = () => {
   const [selectValue, setSelectValue] = useState([])
   const [indeterminate, setIndeterminate] = useState(false)
   const [checkAll, setCheckAll] = useState(false)
+  const [rename, setRename] = useState(false)
 
   const options = [
     {
@@ -439,7 +440,7 @@ const Contract = () => {
                   删除
                 </Button>
                 {selectValue.length === 1 ? (
-                  <Button type='secondary' size='small' shape='round' icon={<IconEdit />}>
+                  <Button type='secondary' size='small' shape='round' icon={<IconEdit />} onClick={() => setRename(!rename)}>
                     重命名
                   </Button>
                 ) : null}
@@ -475,7 +476,7 @@ const Contract = () => {
                       <div className='text-5xl'>{item.icon}</div>
                       <div className='ml-2 w-11/12'>
                         <div className='truncate text-xs leading-6'>
-                          {selectValue.length === 1 && selectValue[0] === item.key ? (
+                          {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                             <Input defaultValue={item.name} size='mini' />
                           ) : (
                             item.name
@@ -490,7 +491,7 @@ const Contract = () => {
                     <div className='text-center'>
                       <div className='text-7xl'>{item.icon}</div>
                       <div className='truncate text-xs my-1 leading-6'>
-                        {selectValue.length === 1 && selectValue[0] === item.key ? (
+                        {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                           <Input defaultValue={item.name} size='mini' />
                         ) : (
                           item.name
