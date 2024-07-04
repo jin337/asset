@@ -38,3 +38,17 @@ body {
 strong {
   display: inline-block;
 }
+/* checkbox全选样式问题 */
+.checkall .arco-checkbox{
+  border: 1px solid #fff;
+}
+.checkall .arco-checkbox-group .arco-checkbox-checked{
+  border-color: #3b82f6;
+  background-color: #bfdbfe;
+}
+.checkall .arco-checkbox-group .arco-checkbox-mask-wrapper{
+  display: none;
+}
+.checkall .arco-checkbox-text{
+  margin: 0;
+}

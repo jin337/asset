@@ -24,6 +24,9 @@ import {
   IconList,
   IconApps,
   IconFilePdf,
+  IconDelete,
+  IconEdit,
+  IconDownload,
 } from '@arco-design/web-react/icon'
 
 const FormItem = Form.Item
@@ -347,7 +350,6 @@ const Contract = () => {
     setIndeterminate(!!(e.length && e.length !== PDFList.length))
     setCheckAll(!!(e.length === PDFList.length))
   }
-
   return (
     <>
       <div className='text-xl font-bold'>
@@ -418,18 +420,38 @@ const Contract = () => {
         onCancel={() => setVisible2(false)}>
         <div className='flex justify-between'>
           <Space size='large'>
-            <Button type='primary' size='small' shape='round' icon={<IconScan />}>
-              扫描
-            </Button>
-            <Button type='primary' size='small' shape='round' icon={<IconCloud />}>
-              上传
-            </Button>
+            {!selectValue.length && (
+              <>
+                <Button type='primary' size='small' shape='round' icon={<IconScan />}>
+                  扫描
+                </Button>
+                <Button type='primary' size='small' shape='round' icon={<IconCloud />}>
+                  上传
+                </Button>
+              </>
+            )}
             <Button type='primary' size='small' shape='round' icon={<IconCheckCircle />}>
               OA审批单
             </Button>
-            <Button type='secondary' size='small' shape='round' icon={<IconLoop />}>
-              刷新
-            </Button>
+            {selectValue.length > 0 ? (
+              <>
+                <Button type='secondary' size='small' shape='round' icon={<IconDelete />}>
+                  删除
+                </Button>
+                {selectValue.length === 1 ? (
+                  <Button type='secondary' size='small' shape='round' icon={<IconEdit />}>
+                    重命名
+                  </Button>
+                ) : null}
+                <Button type='secondary' size='small' shape='round' icon={<IconDownload />}>
+                  下载
+                </Button>
+              </>
+            ) : (
+              <Button type='secondary' size='small' shape='round' icon={<IconLoop />}>
+                刷新
+              </Button>
+            )}
           </Space>
           <ButtonGroup>
             <Button type={isList ? 'secondary' : 'primary'} icon={<IconApps />} onClick={() => setIsList(false)} />
@@ -440,32 +462,42 @@ const Contract = () => {
         <Divider />
         <div>
           <Checkbox onChange={onChangeAll} checked={checkAll} indeterminate={indeterminate}>
-            全选（{selectValue.length}/{PDFList.length}）
+            <span className='ml-2'>
+              全选（{selectValue.length}/{PDFList.length}）
+            </span>
           </Checkbox>
-          <div className='flex flex-wrap mt-5'>
+          <div className='flex flex-wrap mt-3 checkall'>
             <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
               {PDFList.map((item) =>
                 isList ? (
-                  <Checkbox key={item.key} value={item.key} className='w-full'>
-                    {({ checked }) => (
-                      <div className={`flex items-center p-1 mb-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
-                        <div className='text-5xl'>{item.icon}</div>
-                        <div className='ml-2'>
-                          <div className='truncate text-sm'>{item.name}</div>
-                          <div className='truncate text-xs text-neutral-400 mt-1'>{item.size}</div>
+                  <Checkbox key={item.key} value={item.key} checked={item.checked} className='w-full mb-1'>
+                    <div className='flex items-center p-1 mb-1'>
+                      <div className='text-5xl'>{item.icon}</div>
+                      <div className='ml-2 w-11/12'>
+                        <div className='truncate text-xs leading-6'>
+                          {selectValue.length === 1 && selectValue[0] === item.key ? (
+                            <Input defaultValue={item.name} size='mini' />
+                          ) : (
+                            item.name
+                          )}
                         </div>
+                        <div className='truncate text-xs text-neutral-400 mt-1'>{item.size}</div>
                       </div>
-                    )}
+                    </div>
                   </Checkbox>
                 ) : (
-                  <Checkbox className='w-1/6' style={{ marginRight: 0, paddingLeft: 0 }} key={item.key} value={item.key}>
-                    {({ checked }) => (
-                      <div className={`text-center m-1 p-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
-                        <div className='text-7xl'>{item.icon}</div>
-                        <div className='truncate text-xs my-1'>{item.name}</div>
-                        <div className='truncate text-xs text-neutral-400'>{item.size}</div>
+                  <Checkbox className='w-32' style={{ margin: '12px 12px 0', padding: '8px' }} key={item.key} value={item.key}>
+                    <div className='text-center'>
+                      <div className='text-7xl'>{item.icon}</div>
+                      <div className='truncate text-xs my-1 leading-6'>
+                        {selectValue.length === 1 && selectValue[0] === item.key ? (
+                          <Input defaultValue={item.name} size='mini' />
+                        ) : (
+                          item.name
+                        )}
                       </div>
-                    )}
+                      <div className='truncate text-xs text-neutral-400'>{item.size}</div>
+                    </div>
                   </Checkbox>
                 )
               )}

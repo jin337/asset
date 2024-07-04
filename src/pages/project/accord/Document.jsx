@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Card, Input, Button, Form, Space, Checkbox } from '@arco-design/web-react'
-import { IconFile, IconEdit, IconFilePdf } from '@arco-design/web-react/icon'
+import { Card, Input, Button, Form, Space, Checkbox, Upload } from '@arco-design/web-react'
+import { IconFile, IconEdit, IconFilePdf, IconShareExternal } from '@arco-design/web-react/icon'
 
 const FormItem = Form.Item
 const Document = () => {
@@ -101,7 +101,7 @@ const Document = () => {
                 {PDFList.map((item) => (
                   <Checkbox className='w-1/5' style={{ marginRight: 0, paddingLeft: 0 }} key={item.key} value={item.key}>
                     {({ checked }) => (
-                      <div className={`text-center m-1 p-1 rounded ${checked ? 'bg-blue-200' : ''}`}>
+                      <div className={`text-center m-2 p-4 border ${checked ? 'bg-blue-200 border-blue-500' : 'border-white'}`}>
                         <div className='text-6xl'>{item.icon}</div>
                         <div className='truncate text-xs my-1'>{item.name}</div>
                         <div className='truncate text-xs text-neutral-400'>{item.size}</div>
@@ -109,7 +109,7 @@ const Document = () => {
                     )}
                   </Checkbox>
                 ))}
-                {/* <label className='arco-checkbox w-1/5' style={{ marginRight: 0 }}>
+                <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '2rem' }}>
                   <Upload listType='picture-card' action='/'>
                     <div className='arco-upload-trigger-picture'>
                       <div className='arco-upload-trigger-picture-text'>
@@ -117,7 +117,7 @@ const Document = () => {
                       </div>
                     </div>
                   </Upload>
-                </label> */}
+                </label>
               </Checkbox.Group>
             </div>
           </div>

@@ -1,5 +1,17 @@
-import {} from 'react'
-import { Card, Avatar, Descriptions } from '@arco-design/web-react'
+import { useState } from 'react'
+import {
+  Card,
+  Avatar,
+  Descriptions,
+  Modal,
+  Form,
+  Input,
+  DatePicker,
+  Select,
+  Grid,
+  Cascader,
+  Button,
+} from '@arco-design/web-react'
 import { IconSettings } from '@arco-design/web-react/icon'
 
 const gridCardList = [
@@ -134,7 +146,39 @@ const DescriptionsData = [
     span: 3,
   },
 ]
+const { RangePicker, QuarterPicker } = DatePicker
+const FormItem = Form.Item
+const TextArea = Input.TextArea
+const { Row, Col } = Grid
+
 const Overview = () => {
+  const [form] = Form.useForm()
+  const [visible, setVisible] = useState(false)
+  const [initialValues] = useState({
+    key1: 'XM1001',
+    key2: '纬六路、经十八路、恒竞路建设工程',
+  })
+
+  const options = [
+    {
+      label: 'one',
+      value: 0,
+      children: [
+        {
+          label: 'one-1',
+          value: '0-1',
+        },
+      ],
+    },
+    {
+      label: 'two',
+      value: 1,
+    },
+    {
+      label: 'three',
+      value: 2,
+    },
+  ]
   return (
     <>
       <div className='text-xl font-bold'>概况</div>
@@ -156,7 +200,15 @@ const Overview = () => {
         ))}
       </div>
 
-      <Card bordered={false} className='mt-5' title='基本项目信息' extra='修改'>
+      <Card
+        bordered={false}
+        className='mt-5'
+        title='基本项目信息'
+        extra={
+          <Button type='text' onClick={() => setVisible(true)}>
+            修改
+          </Button>
+        }>
         <Descriptions colon=' :' layout='inline-horizontal' size='large' data={DescriptionsData} />
       </Card>
 
@@ -183,6 +235,84 @@ const Overview = () => {
           ))}
         </div>
       </Card>
+
+      <Modal
+        style={{ width: '800px' }}
+        title='项目信息'
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+        autoFocus={false}
+        focusLock={true}
+        okText='提交'
+        cancelText='取消'>
+        <Form
+          form={form}
+          labelCol={{ style: { flexBasis: 120 } }}
+          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}
+          initialValues={initialValues}>
+          <FormItem label='项目编码' field='key1' required>
+            <Input placeholder='输入' allowClear />
+          </FormItem>
+          <FormItem label='项目名称' field='key2' required>
+            <Input placeholder='输入' allowClear />
+          </FormItem>
+          <Row>
+            <Col span={11}>
+              <FormItem label='项目类别' field='key3' required>
+                <Select options={options} allowClear />
+              </FormItem>
+            </Col>
+            <Col span={11} offset={2}>
+              <FormItem label='建设方式' field='key4' required>
+                <Select options={options} allowClear />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={11}>
+              <FormItem label='建设类型' field='key5' required>
+                <Cascader options={options} allowClear />
+              </FormItem>
+            </Col>
+            <Col span={11} offset={2}>
+              <FormItem label='优先级' field='key6' required>
+                <Select options={options} allowClear />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={11}>
+              <FormItem label='关联主项目' field='key7'>
+                <Select options={options} allowClear />
+              </FormItem>
+            </Col>
+            <Col span={11} offset={2}>
+              <FormItem label='负责人' field='key8' required>
+                <Select options={options} allowClear />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={11}>
+              <FormItem label='建设年限' field='key9'>
+                <RangePicker mode='year' allowClear />
+              </FormItem>
+            </Col>
+            <Col span={11} offset={2}>
+              <FormItem label='计划开工时间' field='key10'>
+                <QuarterPicker allowClear style={{ width: '100%' }} />
+              </FormItem>
+            </Col>
+          </Row>
+          <FormItem label='建设地点' field='key11'>
+            <Input placeholder='输入' allowClear />
+          </FormItem>
+          <FormItem label='规模及内容描述' field='key12'>
+            <TextArea placeholder='请输入内容' allowClear />
+          </FormItem>
+        </Form>
+      </Modal>
     </>
   )
 }
