@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from '../store/reducers/common'
 
-import { Layout, Image, Grid, Space, Avatar, Button, Typography } from '@arco-design/web-react'
+import { Layout, Image, Grid, Space, Avatar, Button } from '@arco-design/web-react'
 import {
   IconDesktop,
   IconUser,
@@ -17,6 +17,7 @@ import {
   IconSun,
   IconClose,
   IconMoon,
+  IconMenu,
 } from '@arco-design/web-react/icon'
 
 const { Sider, Header, Content } = Layout
@@ -64,13 +65,12 @@ const itemsSider = [
 ]
 
 const Home = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const location = useLocation()
-  const project = useSelector((state) => state.project)
   const common = useSelector((state) => state.common)
   const [menuSelect, setMenuSelect] = useState()
   const [theme, setTheme] = useState()
+  const [collapse, setCollapse] = useState(false)
 
   // 判断导航选中
   useEffect(() => {
@@ -97,11 +97,6 @@ const Home = () => {
     }
   }, [common.theme])
 
-  // 清除header标题
-  const clearTitle = () => {
-    navigate('/project')
-  }
-
   // 切换主题
   const checkTheme = () => {
     const body = document.body
@@ -118,7 +113,7 @@ const Home = () => {
 
   return (
     <Layout className='w-screen h-screen bg-neutral-100 dark:bg-neutral-950'>
-      <Sider width={80}>
+      <Sider width={80} collapsible trigger={null} collapsed={collapse} collapsedWidth={0}>
         <Menu
           select={menuSelect}
           items={itemsSider}
@@ -135,16 +130,14 @@ const Home = () => {
         <Header className='dark:bg-[#232324] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
           <Row gutter={24} align='center'>
             <Col span={12}>
-              {project.title ? (
-                <div className='flex items-center'>
-                  <IconClose className='cursor-pointer' style={{ color: '#999' }} onClick={clearTitle} />
-                  <Typography.Text type='secondary' bold>
-                    &nbsp;{project.title}
-                  </Typography.Text>
-                </div>
-              ) : (
+              <div className='flex items-center'>
+                {collapse ? (
+                  <IconMenu className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
+                ) : (
+                  <IconClose className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
+                )}
                 <div className='text-xl font-bold'>项目资管平台</div>
-              )}
+              </div>
             </Col>
             <Col span={12} className='text-right'>
               <Space size='medium'>
