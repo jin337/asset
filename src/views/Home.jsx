@@ -1,10 +1,23 @@
 import { useState, useEffect } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from '../store/reducers/common'
 
-import { Layout, Image, Grid, Space, Avatar, Button, Breadcrumb, Popover, Input, List } from '@arco-design/web-react'
+import {
+  Layout,
+  Image,
+  Grid,
+  Space,
+  Avatar,
+  Button,
+  Breadcrumb,
+  Popover,
+  Input,
+  List,
+  Dropdown,
+  Menu,
+} from '@arco-design/web-react'
 import {
   IconDesktop,
   IconUser,
@@ -25,7 +38,7 @@ import {
 const { Sider, Header, Content } = Layout
 const { Row, Col } = Grid
 
-import Menu from '../components/Menu'
+import SystemMenu from '../components/Menu'
 
 const itemsSider = [
   {
@@ -66,6 +79,7 @@ const itemsSider = [
   },
 ]
 const Home = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const location = useLocation()
   const common = useSelector((state) => state.common)
@@ -139,7 +153,7 @@ const Home = () => {
   return (
     <Layout className='w-screen h-screen bg-neutral-100 dark:bg-neutral-950'>
       <Sider width={80} collapsible trigger={null} collapsed={collapse} collapsedWidth={0}>
-        <Menu
+        <SystemMenu
           select={menuSelect}
           items={itemsSider}
           header={
@@ -181,9 +195,20 @@ const Home = () => {
                 <Button shape='round' icon={<IconSearch />} />
                 <Button shape='round' icon={<IconNotification />} />
                 <Button shape='round' icon={theme === 'light' ? <IconMoon /> : <IconSun />} onClick={checkTheme} />
-                <Avatar size={32} style={{ backgroundColor: '#3370ff' }}>
-                  A
-                </Avatar>
+                <Dropdown
+                  position='br'
+                  droplist={
+                    <Menu>
+                      <Menu.Item key='2'>用户信息</Menu.Item>
+                      <Menu.Item key='3' onClick={() => navigate('/login')}>
+                        退出
+                      </Menu.Item>
+                    </Menu>
+                  }>
+                  <Avatar size={32} style={{ backgroundColor: '#3370ff' }} className='cursor-pointer'>
+                    admin
+                  </Avatar>
+                </Dropdown>
               </Space>
             </Col>
           </Row>
