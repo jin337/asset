@@ -62,7 +62,7 @@ const itemsSider = [
     itemKey: 'system',
     text: '系统',
     icon: <IconSettings style={{ fontSize: '24px' }} />,
-    path: '/system',
+    path: '/system/menu',
   },
 ]
 const Home = () => {
