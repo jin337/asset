@@ -1,15 +1,6 @@
 import { useState } from 'react'
 import { Card, Checkbox, Image, Upload, Space, Button, Input } from '@arco-design/web-react'
-import {
-  IconImage,
-  IconEdit,
-  IconCheckCircle,
-  IconLoop,
-  IconCloud,
-  IconScan,
-  IconDelete,
-  IconDownload,
-} from '@arco-design/web-react/icon'
+import { IconImage, IconEdit, IconDelete, IconDownload } from '@arco-design/web-react/icon'
 
 const Construction = () => {
   const [selectValue, setSelectValue] = useState([])
@@ -96,36 +87,19 @@ const Construction = () => {
             </span>
           </Checkbox>
           <Space size='large'>
-            {!selectValue.length && (
-              <>
-                <Button type='primary' size='small' shape='round' icon={<IconScan />}>
-                  扫描
-                </Button>
-                <Button type='primary' size='small' shape='round' icon={<IconCloud />}>
-                  上传
-                </Button>
-              </>
+            {selectValue.length > 0 && (
+              <Button type='secondary' size='small' shape='round' icon={<IconDelete />}>
+                删除
+              </Button>
             )}
-            <Button type='primary' size='small' shape='round' icon={<IconCheckCircle />}>
-              OA审批单
-            </Button>
-            {selectValue.length > 0 ? (
-              <>
-                <Button type='secondary' size='small' shape='round' icon={<IconDelete />}>
-                  删除
-                </Button>
-                {selectValue.length === 1 ? (
-                  <Button type='secondary' size='small' shape='round' icon={<IconEdit />} onClick={() => setRename(!rename)}>
-                    重命名
-                  </Button>
-                ) : null}
-                <Button type='secondary' size='small' shape='round' icon={<IconDownload />}>
-                  下载
-                </Button>
-              </>
-            ) : (
-              <Button type='secondary' size='small' shape='round' icon={<IconLoop />}>
-                刷新
+            {selectValue.length === 1 ? (
+              <Button type='secondary' size='small' shape='round' icon={<IconEdit />} onClick={() => setRename(!rename)}>
+                重命名
+              </Button>
+            ) : null}
+            {PDFList.length > 0 && (
+              <Button type='secondary' size='small' shape='round' icon={<IconDownload />}>
+                下载
               </Button>
             )}
           </Space>
