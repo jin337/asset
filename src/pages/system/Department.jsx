@@ -17,7 +17,16 @@ const Department = () => {
         部门
       </Card>
 
-      <Modal visible={visible}></Modal>
+      <Modal
+        style={{ width: '800px' }}
+        title='角色信息'
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+        autoFocus={false}
+        focusLock={true}
+        okText='提交'
+        cancelText='取消'></Modal>
     </>
   )
 }
