@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Grid, Card, Button, Table, Dropdown, Menu, Form, Input, Cascader, Modal } from '@arco-design/web-react'
+import { Card, Button, Table, Dropdown, Menu, Form, Input, Cascader, Modal } from '@arco-design/web-react'
 import { IconPlus, IconExport, IconMore, IconSearch } from '@arco-design/web-react/icon'
 
-const { Row, Col } = Grid
 const FormItem = Form.Item
 const TextArea = Input.TextArea
 
@@ -95,36 +94,28 @@ const Standard = () => {
 
   return (
     <div className='m-5'>
-      <Row align='center'>
-        <Col span={12}>
-          <div className='flex items-center'>
-            <div className='text-2xl font-bold mr-6'>标准管理</div>
-            <div className='text-base text-blue-500 font-bold'>全部标准（2）</div>
-          </div>
-        </Col>
-        <Col span={12} className='text-right'>
-          <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
-            新建标准
-          </Button>
-        </Col>
-      </Row>
+      <div className='flex justify-between'>
+        <div className='flex items-center'>
+          <div className='text-2xl font-bold mr-6'>标准管理</div>
+          <div className='text-base text-blue-500 font-bold'>全部标准（2）</div>
+        </div>
+        <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
+          新建标准
+        </Button>
+      </div>
 
       <Card bordered={false} className='mt-5'>
-        <Row align='center'>
-          <Col span={22}>
-            <Form layout='inline'>
-              <FormItem label='建设类型' field='key2'>
-                <Cascader style={{ width: 150 }} options={options} allowClear />
-              </FormItem>
-              <FormItem field='key4'>
-                <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
-              </FormItem>
-            </Form>
-          </Col>
-          <Col span={2} className='text-right'>
-            <Button icon={<IconExport />}>导出</Button>
-          </Col>
-        </Row>
+        <div className='flex justify-between'>
+          <Form layout='inline'>
+            <FormItem label='建设类型' field='key2'>
+              <Cascader style={{ width: 150 }} options={options} allowClear />
+            </FormItem>
+            <FormItem field='key4'>
+              <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
+            </FormItem>
+          </Form>
+          <Button icon={<IconExport />}>导出</Button>
+        </div>
 
         <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
       </Card>

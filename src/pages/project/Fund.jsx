@@ -395,6 +395,7 @@ const Fund = () => {
       </Table.Summary.Row>
     )
   }
+
   return (
     <>
       <div className='flex justify-between'>

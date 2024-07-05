@@ -11,7 +11,6 @@ import {
   Modal,
   Form,
   Select,
-  Grid,
   Drawer,
   Switch,
   Popconfirm,
@@ -19,7 +18,6 @@ import {
 } from '@arco-design/web-react'
 import { IconPlus, IconMore, IconSearch, IconDelete } from '@arco-design/web-react/icon'
 
-const { Row, Col } = Grid
 const BreadcrumbItem = Breadcrumb.Item
 const FormItem = Form.Item
 const TextArea = Input.TextArea
@@ -300,31 +298,23 @@ const CreateList = () => {
           <FormItem label='依据项名称' field='key1'>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <Row>
-            <Col span={11}>
-              <FormItem label='依据选择' field='key3'>
-                <Select options={options} allowClear />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='是否是施工依据' field='key4'>
+          <div className='flex justify-between'>
+            <FormItem label='依据选择' field='key3'>
+              <Select options={options} allowClear />
+            </FormItem>
+            <FormItem label='是否是施工依据' field='key4'>
+              <Switch checkedText='是' uncheckedText='否' />
+            </FormItem>
+          </div>
+          {formData.key4 && (
+            <div className='flex justify-between'>
+              <FormItem label='是否加水印' field='key5'>
                 <Switch checkedText='是' uncheckedText='否' />
               </FormItem>
-            </Col>
-          </Row>
-          {formData.key4 && (
-            <Row>
-              <Col span={11}>
-                <FormItem label='是否加水印' field='key5'>
-                  <Switch checkedText='是' uncheckedText='否' />
-                </FormItem>
-              </Col>
-              <Col span={11} offset={2}>
-                <FormItem label='水印内容' field='key6'>
-                  <Input placeholder='输入' allowClear />
-                </FormItem>
-              </Col>
-            </Row>
+              <FormItem label='水印内容' field='key6'>
+                <Input placeholder='输入' allowClear />
+              </FormItem>
+            </div>
           )}
           <FormItem label='备注' field='key12'>
             <TextArea placeholder='请输入内容' allowClear />
@@ -357,30 +347,22 @@ const CreateList = () => {
         okText='保存'
         cancelText='取消'>
         <Form form={form} labelCol={{ style: { flexBasis: 110 } }} wrapperCol={{ style: { flexBasis: 'calc(100% - 110px)' } }}>
-          <Row>
-            <Col span={11}>
-              <FormItem label='数据项名称' field='key1' required>
-                <Input placeholder='输入' allowClear />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='类型' field='key2'>
-                <Select options={options} allowClear required />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={11}>
-              <FormItem label='是否单行展示' field='key3'>
-                <Switch checkedText='是' uncheckedText='否' />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='是否必填' field='key4'>
-                <Switch checkedText='是' uncheckedText='否' />
-              </FormItem>
-            </Col>
-          </Row>
+          <div className='flex justify-between'>
+            <FormItem label='数据项名称' field='key1' required>
+              <Input placeholder='输入' allowClear />
+            </FormItem>
+            <FormItem label='类型' field='key2'>
+              <Select options={options} allowClear required />
+            </FormItem>
+          </div>
+          <div className='flex justify-between'>
+            <FormItem label='是否单行展示' field='key3'>
+              <Switch checkedText='是' uncheckedText='否' />
+            </FormItem>
+            <FormItem label='是否必填' field='key4'>
+              <Switch checkedText='是' uncheckedText='否' />
+            </FormItem>
+          </div>
           <FormItem label='提示信息' field='key5'>
             <Input placeholder='输入' allowClear />
           </FormItem>

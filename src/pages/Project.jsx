@@ -1,22 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  Grid,
-  Card,
-  Button,
-  Table,
-  Dropdown,
-  Menu,
-  Form,
-  Input,
-  Select,
-  Modal,
-  DatePicker,
-  Cascader,
-} from '@arco-design/web-react'
+import { Card, Button, Table, Dropdown, Menu, Form, Input, Select, Modal, DatePicker, Cascader } from '@arco-design/web-react'
 import { IconPlus, IconExport, IconMore, IconSearch } from '@arco-design/web-react/icon'
 
-const { Row, Col } = Grid
 const { RangePicker, QuarterPicker } = DatePicker
 const FormItem = Form.Item
 const TextArea = Input.TextArea
@@ -123,42 +109,34 @@ const Project = () => {
 
   return (
     <div className='m-5'>
-      <Row align='center'>
-        <Col span={12}>
-          <div className='flex items-center'>
-            <div className='text-2xl font-bold mr-6'>项目管理</div>
-            <div className='text-base text-blue-500 font-bold'>全部项目（2）</div>
-          </div>
-        </Col>
-        <Col span={12} className='text-right'>
-          <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
-            新建项目
-          </Button>
-        </Col>
-      </Row>
+      <div className='flex justify-between'>
+        <div className='flex items-center'>
+          <div className='text-2xl font-bold mr-6'>项目管理</div>
+          <div className='text-base text-blue-500 font-bold'>全部项目（2）</div>
+        </div>
+        <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
+          新建项目
+        </Button>
+      </div>
 
       <Card bordered={false} className='mt-5'>
-        <Row align='center'>
-          <Col span={22}>
-            <Form layout='inline'>
-              <FormItem label='类别' field='key1'>
-                <Select style={{ width: 150 }} options={options} allowClear />
-              </FormItem>
-              <FormItem label='建设类型' field='key2'>
-                <Cascader style={{ width: 150 }} options={options} allowClear />
-              </FormItem>
-              <FormItem label='建设方式' field='key3'>
-                <Select style={{ width: 150 }} options={options} allowClear />
-              </FormItem>
-              <FormItem field='key4'>
-                <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
-              </FormItem>
-            </Form>
-          </Col>
-          <Col span={2} className='text-right'>
-            <Button icon={<IconExport />}>导出</Button>
-          </Col>
-        </Row>
+        <div className='flex justify-between'>
+          <Form layout='inline'>
+            <FormItem label='类别' field='key1'>
+              <Select style={{ width: 150 }} options={options} allowClear />
+            </FormItem>
+            <FormItem label='建设类型' field='key2'>
+              <Cascader style={{ width: 150 }} options={options} allowClear />
+            </FormItem>
+            <FormItem label='建设方式' field='key3'>
+              <Select style={{ width: 150 }} options={options} allowClear />
+            </FormItem>
+            <FormItem field='key4'>
+              <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
+            </FormItem>
+          </Form>
+          <Button icon={<IconExport />}>导出</Button>
+        </div>
 
         <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
       </Card>
@@ -180,54 +158,39 @@ const Project = () => {
           <FormItem label='项目名称' field='key2' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <Row>
-            <Col span={11}>
-              <FormItem label='项目类别' field='key3' required>
-                <Select options={options} allowClear />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='建设方式' field='key4' required>
-                <Select options={options} allowClear />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={11}>
-              <FormItem label='建设类型' field='key5' required>
-                <Cascader options={options} allowClear />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='优先级' field='key6' required>
-                <Select options={options} allowClear />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={11}>
-              <FormItem label='关联主项目' field='key7'>
-                <Select options={options} allowClear />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='负责人' field='key8' required>
-                <Select options={options} allowClear />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={11}>
-              <FormItem label='建设年限' field='key9'>
-                <RangePicker mode='year' allowClear />
-              </FormItem>
-            </Col>
-            <Col span={11} offset={2}>
-              <FormItem label='计划开工时间' field='key10'>
-                <QuarterPicker allowClear style={{ width: '100%' }} />
-              </FormItem>
-            </Col>
-          </Row>
+          <div className='flex justify-between'>
+            <FormItem label='项目类别' field='key3' required>
+              <Select options={options} allowClear />
+            </FormItem>
+            <FormItem label='建设方式' field='key4' required>
+              <Select options={options} allowClear />
+            </FormItem>
+          </div>
+          <div className='flex justify-between'>
+            <FormItem label='建设类型' field='key5' required>
+              <Cascader options={options} allowClear />
+            </FormItem>
+            <FormItem label='优先级' field='key6' required>
+              <Select options={options} allowClear />
+            </FormItem>
+          </div>
+          <div className='flex justify-between'>
+            <FormItem label='关联主项目' field='key7'>
+              <Select options={options} allowClear />
+            </FormItem>
+            <FormItem label='负责人' field='key8' required>
+              <Select options={options} allowClear />
+            </FormItem>
+          </div>
+
+          <div className='flex justify-between'>
+            <FormItem label='建设年限' field='key9'>
+              <RangePicker mode='year' allowClear />
+            </FormItem>
+            <FormItem label='计划开工时间' field='key10'>
+              <QuarterPicker allowClear style={{ width: '100%' }} />
+            </FormItem>
+          </div>
           <FormItem label='建设地点' field='key11'>
             <Input placeholder='输入' allowClear />
           </FormItem>

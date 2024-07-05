@@ -44,6 +44,7 @@ const Accord = () => {
     </Menu>
   )
 
+  // 选中
   const onSelectTree = (e) => {
     const list = flattenArray(treeData, 'children')
     const item = list.find((i) => i.key === e[0])

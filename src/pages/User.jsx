@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { Grid, Card, Button, Table, Dropdown, Menu, Form, Input, Select, Switch, Modal } from '@arco-design/web-react'
+import { Card, Button, Table, Dropdown, Menu, Form, Input, Select, Switch, Modal } from '@arco-design/web-react'
 import { IconPlus, IconMore, IconSearch } from '@arco-design/web-react/icon'
 
-const { Row, Col } = Grid
 const FormItem = Form.Item
 
 const User = () => {
@@ -48,8 +47,12 @@ const User = () => {
       },
     },
     {
-      title: '状态',
+      title: '部门',
       dataIndex: 'name3',
+    },
+    {
+      title: '状态',
+      dataIndex: 'name4',
     },
     {
       title: '操作',
@@ -69,42 +72,34 @@ const User = () => {
       name: 'admin',
       name1: '张三',
       name2: '管理员',
-      name3: '正常',
+      name3: '研发部',
+      name4: '正常',
     },
     {
       key: '2',
       name: 'BZ1002',
       name1: '管理员 ',
       name2: '资管员',
-      name3: '正常',
+      name3: '行政部',
+      name4: '正常',
     },
   ]
 
   return (
     <div className='m-5'>
-      <Row align='center'>
-        <Col span={12}>
-          <div className='flex items-center'>
-            <div className='text-2xl font-bold'>用户管理</div>
-          </div>
-        </Col>
-        <Col span={12} className='text-right'>
-          <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
-            新建用户
-          </Button>
-        </Col>
-      </Row>
+      <div className='flex justify-between'>
+        <div className='text-2xl font-bold'>用户管理</div>
+        <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
+          新建用户
+        </Button>
+      </div>
 
       <Card bordered={false} className='mt-5'>
-        <Row align='center'>
-          <Col span={22}>
-            <Form layout='inline'>
-              <FormItem field='key4'>
-                <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
-              </FormItem>
-            </Form>
-          </Col>
-        </Row>
+        <Form layout='inline'>
+          <FormItem field='key4'>
+            <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
+          </FormItem>
+        </Form>
 
         <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
       </Card>
@@ -126,10 +121,15 @@ const User = () => {
           <FormItem label='用户名' field='key2' required>
             <Input placeholder='输入' allowClear />
           </FormItem>
-          <FormItem label='角色' field='key5' required>
-            <Select options={options} allowClear />
-          </FormItem>
-          <FormItem label='状态' field='key12' required>
+          <div className='flex'>
+            <FormItem label='角色' field='key3' required>
+              <Select options={options} allowClear />
+            </FormItem>
+            <FormItem label='部门' field='key4' required>
+              <Select options={options} allowClear />
+            </FormItem>
+          </div>
+          <FormItem label='状态' field='key5' required>
             <Switch checkedText='开' uncheckedText='关' />
           </FormItem>
         </Form>
