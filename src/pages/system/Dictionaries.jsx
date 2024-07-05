@@ -79,22 +79,16 @@ const Dictionaries = () => {
         <Card
           bordered={false}
           className='mt-5 w-1/2'
-          title='字典管理'
           extra={
             <Button icon={<IconPlus />} size='mini' type='primary' onClick={() => setVisible(true)}>
               新建字典
             </Button>
           }>
-          <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
+          <Table columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
         </Card>
 
         <Card bordered={false} className='mt-5 w-1/2 ml-4' title='字典详情'>
-          <Table
-            className='mt-5'
-            columns={columnsDetails}
-            data={dataDetails}
-            pagination={{ showTotal: true, pageSize: 10, current: 1 }}
-          />
+          <Table columns={columnsDetails} data={dataDetails} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
         </Card>
       </div>
 

@@ -51,13 +51,11 @@ const Standard = () => {
     {
       title: '标准名称',
       dataIndex: 'name2',
-      render: (text) => {
-        return (
-          <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/standard/create-list')}>
-            {text}
-          </div>
-        )
-      },
+      render: (text) => (
+        <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/standard/create-list')}>
+          {text}
+        </div>
+      ),
     },
     {
       title: '状态',

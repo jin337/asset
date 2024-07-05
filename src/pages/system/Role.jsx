@@ -78,7 +78,7 @@ const Role = () => {
         </Button>
       </div>
       <Card bordered={false} className='mt-5'>
-        <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
+        <Table columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
       </Card>
 
       <Modal

@@ -50,13 +50,11 @@ const Project = () => {
     {
       title: '项目名称',
       dataIndex: 'name1',
-      render: (text) => {
-        return (
-          <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/project-dashboard/overview')}>
-            {text}
-          </div>
-        )
-      },
+      render: (text) => (
+        <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/project-dashboard/overview')}>
+          {text}
+        </div>
+      ),
     },
     {
       title: '类型',

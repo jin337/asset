@@ -42,9 +42,7 @@ const User = () => {
     {
       title: '角色',
       dataIndex: 'name2',
-      render: (text) => {
-        return <div className='text-sm text-blue-500 cursor-pointer'>{text}</div>
-      },
+      render: (text) => <div className='text-sm text-blue-500 cursor-pointer'>{text}</div>,
     },
     {
       title: '部门',
@@ -57,13 +55,11 @@ const User = () => {
     {
       title: '操作',
       dataIndex: 'operate',
-      render: () => {
-        return (
-          <Dropdown droplist={dropList} position='br'>
-            <IconMore />
-          </Dropdown>
-        )
-      },
+      render: () => (
+        <Dropdown droplist={dropList} position='br'>
+          <IconMore />
+        </Dropdown>
+      ),
     },
   ]
   const data = [

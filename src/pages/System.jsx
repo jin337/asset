@@ -14,16 +14,16 @@ const itemsSider = [
     path: '/system/menu',
   },
   {
-    itemKey: 'department',
-    text: '部门',
-    icon: <IconSettings />,
-    path: '/system/department',
-  },
-  {
     itemKey: 'role',
     text: '角色',
     icon: <IconSettings />,
     path: '/system/role',
+  },
+  {
+    itemKey: 'department',
+    text: '部门',
+    icon: <IconSettings />,
+    path: '/system/department',
   },
   {
     itemKey: 'dictionaries',
