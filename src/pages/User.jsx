@@ -96,7 +96,13 @@ const User = () => {
 
       <Card bordered={false} className='mt-5'>
         <Form layout='inline'>
-          <FormItem field='key4'>
+          <FormItem label='角色' field='key1'>
+            <Select style={{ width: 150 }} options={options} allowClear />
+          </FormItem>
+          <FormItem label='部门' field='key2'>
+            <Select style={{ width: 150 }} options={options} allowClear />
+          </FormItem>
+          <FormItem field='ke3'>
             <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
           </FormItem>
         </Form>
