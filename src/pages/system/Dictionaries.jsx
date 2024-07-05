@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import { Button, Card, Modal, Table, Space } from '@arco-design/web-react'
+import { Button, Card, Modal, Table, Space, Form, Input } from '@arco-design/web-react'
 import { IconPlus } from '@arco-design/web-react/icon'
 
+const FormItem = Form.Item
+const TextArea = Input.TextArea
 const Dictionaries = () => {
+  const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const columns = [
     {
@@ -96,15 +99,31 @@ const Dictionaries = () => {
       </div>
 
       <Modal
-        style={{ width: '800px' }}
-        title='字典信息'
+        style={{ width: '500px' }}
+        title='新增字典'
         visible={visible}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
         autoFocus={false}
         focusLock={true}
         okText='提交'
-        cancelText='取消'></Modal>
+        cancelText='取消'>
+        <Form
+          form={form}
+          autoComplete='off'
+          labelCol={{ style: { flexBasis: 120 } }}
+          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}>
+          <FormItem label='字典名称' field='key1' required>
+            <Input placeholder='输入' allowClear />
+          </FormItem>
+          <FormItem label='字典标签' field='key2' required>
+            <Input placeholder='输入' allowClear />
+          </FormItem>
+          <FormItem label='描述' field='key3' required>
+            <TextArea placeholder='请输入内容' allowClear />
+          </FormItem>
+        </Form>
+      </Modal>
     </>
   )
 }
