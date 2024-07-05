@@ -37,11 +37,6 @@ const Login = () => {
                 login
               </Button>
             </FormItem>
-            <FormItem>
-              <Button type='text' long>
-                注册账号
-              </Button>
-            </FormItem>
           </Form>
         </div>
       </div>

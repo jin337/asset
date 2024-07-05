@@ -22,6 +22,8 @@ const MenuSystem = () => {
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const [visible1, setVisible1] = useState(false)
+  const [visible2, setVisible2] = useState(false)
+
   const options = [
     {
       label: 'one',
@@ -297,7 +299,7 @@ const MenuSystem = () => {
         onCancel={() => setVisible1(false)}>
         <Descriptions colon=' :' layout='inline-horizontal' size='large' column={2} data={DescriptionsData} />
         <div className='text-right'>
-          <Button icon={<IconPlus />} type='primary' size='mini'>
+          <Button icon={<IconPlus />} type='primary' size='mini' onClick={() => setVisible2(true)}>
             新建按钮
           </Button>
         </div>
@@ -355,6 +357,41 @@ const MenuSystem = () => {
               <Switch checkedText='是' uncheckedText='否' />
             </FormItem>
           </div>
+          <FormItem label='描述' field='key10'>
+            <TextArea placeholder='请输入内容' allowClear />
+          </FormItem>
+        </Form>
+      </Modal>
+      {/* 菜单信息 */}
+      <Modal
+        style={{ width: '800px' }}
+        title='按钮信息'
+        visible={visible2}
+        onOk={() => setVisible2(false)}
+        onCancel={() => setVisible2(false)}
+        autoFocus={false}
+        focusLock={true}
+        okText='提交'
+        cancelText='取消'>
+        <Form
+          form={form}
+          autoComplete='off'
+          labelCol={{ style: { flexBasis: 120 } }}
+          wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}>
+          <FormItem label='上级菜单' field='key1'>
+            <Select options={options} allowClear />
+          </FormItem>
+          <div className='flex justify-between'>
+            <FormItem label='按钮名称' field='key2' required>
+              <Input placeholder='输入' allowClear />
+            </FormItem>
+            <FormItem label='权限规则' field='key3'>
+              <Input placeholder='输入' allowClear />
+            </FormItem>
+          </div>
+          <FormItem label='显示排序' field='key9'>
+            <InputNumber mode='button' />
+          </FormItem>
           <FormItem label='描述' field='key10'>
             <TextArea placeholder='请输入内容' allowClear />
           </FormItem>
