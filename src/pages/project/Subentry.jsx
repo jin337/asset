@@ -37,9 +37,7 @@ const Subentry = () => {
       title: '操作',
       dataIndex: 'operate',
       align: 'center',
-      render: () => {
-        return <Button type='text'>查看</Button>
-      },
+      render: () => <Button type='text'>查看</Button>,
     },
   ]
   const data = [

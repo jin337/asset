@@ -193,18 +193,16 @@ const Fund = () => {
       title: '操作',
       dataIndex: 'operate',
       align: 'center',
-      render: () => {
-        return (
-          <Space>
-            <Button type='text' size='mini'>
-              修改
-            </Button>
-            <Button type='text' size='mini'>
-              删除
-            </Button>
-          </Space>
-        )
-      },
+      render: () => (
+        <Space>
+          <Button type='text' size='mini'>
+            修改
+          </Button>
+          <Button type='text' size='mini'>
+            删除
+          </Button>
+        </Space>
+      ),
     },
   ]
   const data = [

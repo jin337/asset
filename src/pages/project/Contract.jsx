@@ -109,13 +109,11 @@ const Contract = () => {
       title: '操作',
       dataIndex: 'operate',
       align: 'center',
-      render: () => {
-        return (
-          <Button type='text' onClick={() => setVisible2(true)}>
-            查看
-          </Button>
-        )
-      },
+      render: () => (
+        <Button type='text' onClick={() => setVisible2(true)}>
+          查看
+        </Button>
+      ),
     },
   ]
   const data = [

@@ -29,9 +29,7 @@ const Member = () => {
       title: '操作',
       dataIndex: 'operate',
       align: 'center',
-      render: () => {
-        return <Button type='text'>删除</Button>
-      },
+      render: () => <Button type='text'>删除</Button>,
     },
   ]
   const data = [
