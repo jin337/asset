@@ -6,6 +6,7 @@ import { IconUser, IconLock } from '@arco-design/web-react/icon'
 
 const FormItem = Form.Item
 const Login = () => {
+  const [form] = Form.useForm()
   const common = useSelector((state) => state.common)
   const navigate = useNavigate()
 
@@ -21,18 +22,27 @@ const Login = () => {
       </div>
       <div className='w-3/5 flex justify-center items-center'>
         <div className='w-2/5'>
-          <Form size='large' layout='vertical' initialValues={{ username: 'admin', password: 'admin' }}>
+          <Form
+            form={form}
+            size='large'
+            layout='vertical'
+            autoComplete='off'
+            initialValues={{ username: 'admin' }}
+            onSubmit={(v) => {
+              console.log(v)
+              navigate('/dashboard')
+            }}>
             <FormItem>
               <div className='flex flex-col items-center'>
                 <Image preview={false} width={100} src={common.logo} />
                 <p className='text-3xl mt-2'>登录</p>
               </div>
             </FormItem>
-            <FormItem field='username'>
-              <Input prefix={<IconUser />} placeholder='Username:admin' />
+            <FormItem field='username' rules={[{ required: true }]}>
+              <Input prefix={<IconUser />} placeholder='Username:admin' allowClear />
             </FormItem>
-            <FormItem field='password'>
-              <Input.Password prefix={<IconLock />} placeholder='Password:admin' />
+            <FormItem field='password' rules={[{ required: true }]}>
+              <Input.Password prefix={<IconLock />} placeholder='Password:admin' allowClear />
             </FormItem>
             <FormItem field='readme'>
               <div className='flex justify-between'>
@@ -41,7 +51,7 @@ const Login = () => {
               </div>
             </FormItem>
             <FormItem>
-              <Button type='primary' long onClick={() => navigate('/dashboard')}>
+              <Button type='primary' htmlType='submit' long>
                 登录
               </Button>
             </FormItem>
