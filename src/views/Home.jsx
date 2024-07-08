@@ -6,7 +6,21 @@ import { switchTheme } from '../store/reducers/common'
 import { setMainMenu } from '../store/reducers/system'
 import { setProjectID } from '../store/reducers/project'
 
-import { Layout, Image, Space, Avatar, Button, Breadcrumb, Popover, Input, List, Dropdown, Menu } from '@arco-design/web-react'
+import {
+  Layout,
+  Image,
+  Space,
+  Avatar,
+  Button,
+  Breadcrumb,
+  Popover,
+  Input,
+  List,
+  Dropdown,
+  Menu,
+  Tabs,
+  Divider,
+} from '@arco-design/web-react'
 
 import {
   IconSearch,
@@ -20,6 +34,7 @@ import {
 } from '@arco-design/web-react/icon'
 
 const { Sider, Header, Content } = Layout
+const TabPane = Tabs.TabPane
 
 import SystemMenu from '../components/Menu'
 
@@ -247,8 +262,46 @@ const Home = () => {
               )}
             </>
             <Space size='medium'>
-              <Button shape='round' icon={<IconSearch />} />
-              <Button shape='round' icon={<IconNotification />} />
+              <Input suffix={<IconSearch />} placeholder='搜项目' allowClear />
+              <Popover
+                position='br'
+                content={
+                  <Tabs defaultActiveTab='1' type='rounded'>
+                    {[
+                      { key: 1, title: '消息' },
+                      { key: 2, title: '通知' },
+                      { key: 3, title: '待办' },
+                    ].map((item) => (
+                      <TabPane key={item.key} title={item.title}>
+                        <List
+                          bordered={false}
+                          size='small'
+                          footer={
+                            <div className='flex justify-around text-center'>
+                              <div className='w-1/2 text-sm text-blue-500 cursor-pointer'>已读</div>
+                              <Divider type='vertical' />
+                              <div className='w-1/2 text-sm text-blue-500 cursor-pointer'>查看更多</div>
+                            </div>
+                          }
+                          dataSource={[
+                            'Beijing Bytedance Technology Co., Ltd.',
+                            'Bytedance Technology Co., Ltd.',
+                            'Beijing Toutiao Technology Co., Ltd.',
+                            'Beijing Volcengine Technology Co., Ltd.',
+                            'China Beijing Bytedance Technology Co., Ltd.',
+                          ]}
+                          render={(e, index) => (
+                            <List.Item key={index}>
+                              {item.key}.{e}
+                            </List.Item>
+                          )}
+                        />
+                      </TabPane>
+                    ))}
+                  </Tabs>
+                }>
+                <Button shape='round' icon={<IconNotification />} />
+              </Popover>
               <Button shape='round' icon={theme === 'light' ? <IconMoon /> : <IconSun />} onClick={checkTheme} />
               <Dropdown
                 position='br'
