@@ -21,13 +21,18 @@ const initialState = {
       name5: '已完工',
     },
   ],
+  projectID: null,
 }
 
 export const project = createSlice({
   name: 'project',
   initialState,
-  reducers: {},
+  reducers: {
+    setProjectID: (state, action) => {
+      state.projectID = action.payload
+    },
+  },
 })
 
-// export const {} = project.actions
+export const { setProjectID } = project.actions
 export default project.reducer

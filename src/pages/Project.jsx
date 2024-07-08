@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { Card, Button, Table, Dropdown, Menu, Form, Input, Select, Modal, DatePicker, Cascader } from '@arco-design/web-react'
 import { IconPlus, IconExport, IconMore, IconSearch } from '@arco-design/web-react/icon'
+
+import { setProjectID } from '../store/reducers/project'
 
 const { RangePicker, QuarterPicker } = DatePicker
 const FormItem = Form.Item
@@ -9,6 +13,9 @@ const TextArea = Input.TextArea
 
 const Project = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const project = useSelector((state) => state.project)
+
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
 
@@ -42,6 +49,7 @@ const Project = () => {
       value: 2,
     },
   ]
+
   const columns = [
     {
       title: '项目编码',
@@ -50,8 +58,8 @@ const Project = () => {
     {
       title: '项目名称',
       dataIndex: 'name1',
-      render: (text) => (
-        <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/project-dashboard/overview')}>
+      render: (text, item) => (
+        <div className='text-sm text-blue-500 cursor-pointer' onClick={() => linkDetails(item)}>
           {text}
         </div>
       ),
@@ -84,26 +92,12 @@ const Project = () => {
       },
     },
   ]
-  const data = [
-    {
-      key: '1',
-      name: 'XM1001',
-      name1: '纬六路、经十八路、恒竞路建设工程',
-      name2: '新建',
-      name3: '代建',
-      name4: '市政基础设施/市政道路',
-      name5: '开工建设',
-    },
-    {
-      key: '2',
-      name: 'XM1002',
-      name1: '尧辰路以东、栖霞大道以南地块配套新三路一期工程 ',
-      name2: '续建',
-      name3: '自建',
-      name4: '载体办公设施建设',
-      name5: '已完工',
-    },
-  ]
+
+  // 跳转详情页面
+  const linkDetails = (item) => {
+    dispatch(setProjectID(item.key))
+    navigate('/project-dashboard/overview', { state: { key: item.key } })
+  }
 
   return (
     <div className='m-5'>
@@ -136,7 +130,12 @@ const Project = () => {
           <Button icon={<IconExport />}>导出</Button>
         </div>
 
-        <Table className='mt-5' columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
+        <Table
+          className='mt-5'
+          columns={columns}
+          data={project.projectData}
+          pagination={{ showTotal: true, pageSize: 10, current: 1 }}
+        />
       </Card>
 
       <Modal

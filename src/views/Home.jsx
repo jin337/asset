@@ -4,21 +4,9 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from '../store/reducers/common'
 import { setMainMenu } from '../store/reducers/system'
+import { setProjectID } from '../store/reducers/project'
 
-import {
-  Layout,
-  Image,
-  Grid,
-  Space,
-  Avatar,
-  Button,
-  Breadcrumb,
-  Popover,
-  Input,
-  List,
-  Dropdown,
-  Menu,
-} from '@arco-design/web-react'
+import { Layout, Image, Space, Avatar, Button, Breadcrumb, Popover, Input, List, Dropdown, Menu } from '@arco-design/web-react'
 
 import {
   IconSearch,
@@ -28,11 +16,10 @@ import {
   IconMoon,
   IconMenu,
   IconDown,
-  IconCopy,
+  IconArchive,
 } from '@arco-design/web-react/icon'
 
 const { Sider, Header, Content } = Layout
-const { Row, Col } = Grid
 
 import SystemMenu from '../components/Menu'
 
@@ -42,10 +29,11 @@ const Home = () => {
   const location = useLocation()
   const common = useSelector((state) => state.common)
   const system = useSelector((state) => state.system)
+  const project = useSelector((state) => state.project)
+
   const [menuSelect, setMenuSelect] = useState()
   const [theme, setTheme] = useState()
   const [collapse, setCollapse] = useState(false)
-  const [isProject, setIsProject] = useState(false)
 
   // 获取导航数据
   useEffect(() => {
@@ -174,10 +162,14 @@ const Home = () => {
       if (!item) {
         item = system.mainMenu.find((e) => key.includes(e.path))
       }
-      setIsProject(key.includes('/project-dashboard/'))
+      if (!key.includes('/project-dashboard/')) {
+        dispatch(setProjectID(null))
+      } else {
+        location.state?.key && dispatch(setProjectID(location.state.key))
+      }
       item && setMenuSelect(item.itemKey)
     }
-  }, [location, system.mainMenu])
+  }, [dispatch, location, system.mainMenu])
 
   // 判断主题
   useEffect(() => {
@@ -206,24 +198,18 @@ const Home = () => {
     dispatch(switchTheme(key))
   }
 
-  const content = (
+  // 项目目录
+  const projectContent = (
     <>
       <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
       <List
         size='small'
         bordered={false}
         pagination={{ pageSize: 3 }}
-        dataSource={[
-          'Beijing Bytedance Technology Co., Ltd.',
-          'Bytedance Technology Co., Ltd.',
-          'Beijing Toutiao Technology Co., Ltd.',
-          'Beijing Volcengine Technology Co., Ltd.',
-          'China Beijing Bytedance Technology Co., Ltd.',
-        ]}
+        dataSource={project.projectData}
         render={(item, index) => (
-          <List.Item key={index}>
-            <IconCopy className='mr-1' />
-            {item}
+          <List.Item key={index} className='cursor-pointer' onClick={() => dispatch(setProjectID(item.key))}>
+            <List.Item.Meta avatar={<IconArchive />} title={item.name1} />
           </List.Item>
         )}
       />
@@ -246,9 +232,9 @@ const Home = () => {
       </Sider>
       <Layout>
         <Header className='dark:bg-[#232324] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
-          <Row gutter={24} align='center'>
-            <Col span={12}>
-              {isProject ? (
+          <div className='flex justify-between items-center'>
+            <>
+              {project.projectID ? (
                 <div className='flex items-center'>
                   {collapse ? (
                     <IconMenu className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
@@ -258,9 +244,9 @@ const Home = () => {
                   <Breadcrumb maxCount='3'>
                     <Breadcrumb.Item>项目</Breadcrumb.Item>
                     <Breadcrumb.Item>
-                      纬六路、经十八路、恒竞路建设工程
-                      <Popover position='bl' content={content} unmountOnExit={false}>
-                        <IconDown className='ml-1 cursor-pointer' />
+                      {project.projectData.find((e) => e.key === project.projectID).name1}
+                      <Popover position='bl' content={projectContent}>
+                        <IconDown className='ml-2 cursor-pointer' />
                       </Popover>
                     </Breadcrumb.Item>
                   </Breadcrumb>
@@ -268,29 +254,27 @@ const Home = () => {
               ) : (
                 <div className='text-xl font-bold'>项目资管平台</div>
               )}
-            </Col>
-            <Col span={12} className='text-right'>
-              <Space size='medium'>
-                <Button shape='round' icon={<IconSearch />} />
-                <Button shape='round' icon={<IconNotification />} />
-                <Button shape='round' icon={theme === 'light' ? <IconMoon /> : <IconSun />} onClick={checkTheme} />
-                <Dropdown
-                  position='br'
-                  droplist={
-                    <Menu>
-                      <Menu.Item key='2'>用户信息</Menu.Item>
-                      <Menu.Item key='3' onClick={() => navigate('/login')}>
-                        退出
-                      </Menu.Item>
-                    </Menu>
-                  }>
-                  <Avatar size={32} style={{ backgroundColor: '#3370ff' }} className='cursor-pointer'>
-                    admin
-                  </Avatar>
-                </Dropdown>
-              </Space>
-            </Col>
-          </Row>
+            </>
+            <Space size='medium'>
+              <Button shape='round' icon={<IconSearch />} />
+              <Button shape='round' icon={<IconNotification />} />
+              <Button shape='round' icon={theme === 'light' ? <IconMoon /> : <IconSun />} onClick={checkTheme} />
+              <Dropdown
+                position='br'
+                droplist={
+                  <Menu>
+                    <Menu.Item key='2'>用户信息</Menu.Item>
+                    <Menu.Item key='3' onClick={() => navigate('/login')}>
+                      退出
+                    </Menu.Item>
+                  </Menu>
+                }>
+                <Avatar size={32} style={{ backgroundColor: '#3370ff' }} className='cursor-pointer'>
+                  admin
+                </Avatar>
+              </Dropdown>
+            </Space>
+          </div>
         </Header>
         <Content className='overflow-y-auto'>
           <Outlet />
