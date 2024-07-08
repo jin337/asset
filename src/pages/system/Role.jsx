@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Button, Card, Modal, Table, Space, Form, Input, Tree } from '@arco-design/web-react'
 import { IconPlus } from '@arco-design/web-react/icon'
 
@@ -6,6 +7,7 @@ const FormItem = Form.Item
 const TextArea = Input.TextArea
 
 const Role = () => {
+  const system = useSelector((state) => state.system)
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
 
@@ -39,36 +41,6 @@ const Role = () => {
   ]
   const data = []
 
-  const TreeData = [
-    {
-      title: 'Trunk 0-0',
-      key: '0-0',
-    },
-    {
-      title: 'Trunk 0-1',
-      key: '0-1',
-      children: [
-        {
-          title: 'Branch 0-1-1',
-          key: '0-1-1',
-          children: [
-            {
-              title: 'Leaf ',
-              key: '0-1-1-1',
-            },
-            {
-              title: 'Leaf ',
-              key: '0-1-1-2',
-            },
-          ],
-        },
-        {
-          title: 'Leaf',
-          key: '0-1-2',
-        },
-      ],
-    },
-  ]
   return (
     <>
       <div className='flex justify-between'>
@@ -100,7 +72,14 @@ const Role = () => {
             <Input placeholder='输入' allowClear />
           </FormItem>
           <FormItem label='菜单权限' field='key2' required>
-            <Tree checkable treeData={TreeData}></Tree>
+            <Tree
+              className='overflow-y-auto h-52'
+              checkable
+              treeData={system.mainMenu}
+              fieldNames={{
+                key: 'itemKey',
+                title: 'text',
+              }}></Tree>
           </FormItem>
           <FormItem label='描述' field='key3' required>
             <TextArea placeholder='请输入内容' allowClear />

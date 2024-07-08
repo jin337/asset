@@ -20,6 +20,7 @@ import DynamicIcon from '../../components/DynamicIcon'
 
 const FormItem = Form.Item
 const TextArea = Input.TextArea
+
 const MenuSystem = () => {
   const system = useSelector((state) => state.system)
   const [form] = Form.useForm()
@@ -69,7 +70,7 @@ const MenuSystem = () => {
     },
     {
       title: '图标',
-      dataIndex: 'icon',
+      dataIndex: 'iconType',
       render: (text) => <DynamicIcon className='text-base' name={text} />,
     },
     {
@@ -104,7 +105,7 @@ const MenuSystem = () => {
       align: 'center',
       render: () => (
         <Dropdown droplist={dropList} position='br'>
-          <IconMore />
+          <DynamicIcon name='IconMore' />
         </Dropdown>
       ),
     },
@@ -170,11 +171,12 @@ const MenuSystem = () => {
       value: '否',
     },
   ]
+
   return (
     <>
       <div className='flex justify-between'>
         <div className='text-2xl font-bold'>菜单管理</div>
-        <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
+        <Button icon={<DynamicIcon name='IconPlus' />} type='primary' onClick={() => setVisible(true)}>
           新建菜单
         </Button>
       </div>

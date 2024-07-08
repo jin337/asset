@@ -3,6 +3,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from '../store/reducers/common'
+import { setMainMenu } from '../store/reducers/system'
 
 import {
   Layout,
@@ -46,6 +47,125 @@ const Home = () => {
   const [collapse, setCollapse] = useState(false)
   const [isProject, setIsProject] = useState(false)
 
+  // 获取导航数据
+  useEffect(() => {
+    const arr = [
+      {
+        sort: 1,
+        itemKey: 'dashboard',
+        key: 'dashboard',
+        text: '工作台',
+        iconType: 'IconDesktop',
+        path: '/dashboard',
+        componenPath: 'pages/Dashboard',
+        isOut: 0,
+        isHide: 0,
+      },
+      {
+        sort: 2,
+        itemKey: 'project',
+        key: 'project',
+        text: '项目',
+        iconType: 'IconApps',
+        path: '/project',
+        componenPath: 'pages/Project',
+        isOut: 0,
+        isHide: 0,
+      },
+      {
+        sort: 3,
+        itemKey: 'standard',
+        key: 'standard',
+        text: '标准',
+        iconType: 'IconFile',
+        path: '/standard',
+        componenPath: 'pages/Standard',
+        isOut: 0,
+        isHide: 0,
+      },
+      {
+        sort: 4,
+        itemKey: 'user',
+        key: 'user',
+        text: '用户',
+        iconType: 'IconUser',
+        path: '/user',
+        componenPath: 'pages/User',
+        isOut: 0,
+        isHide: 0,
+      },
+      {
+        sort: 5,
+        itemKey: 'analyse',
+        key: 'analyse',
+        text: '分析',
+        iconType: 'IconExperiment',
+        path: '/analyse',
+        componenPath: 'pages/Analyse',
+        isOut: 0,
+        isHide: 0,
+      },
+      {
+        sort: 6,
+        itemKey: 'system',
+        key: 'system',
+        text: '系统',
+        iconType: 'IconSettings',
+        path: '/system/menu',
+        componenPath: 'pages/System',
+        isOut: 0,
+        isHide: 0,
+        children: [
+          {
+            sort: 1,
+            itemKey: 'menu',
+            key: 'menu',
+            text: '菜单',
+            iconType: 'IconSettings',
+            path: '/system/menu',
+            componenPath: 'pages/system/Menu',
+            isOut: 0,
+            isHide: 0,
+          },
+          {
+            sort: 2,
+            itemKey: 'role',
+            key: 'role',
+            text: '角色',
+            iconType: 'IconSettings',
+            path: '/system/role',
+            componenPath: 'pages/system/role',
+            isOut: 0,
+            isHide: 0,
+          },
+          {
+            sort: 3,
+            itemKey: 'department',
+            key: 'department',
+            text: '部门',
+            iconType: 'IconSettings',
+            path: '/system/department',
+            componenPath: 'pages/system/department',
+            isOut: 0,
+            isHide: 0,
+          },
+          {
+            sort: 4,
+            itemKey: 'dictionaries',
+            key: 'dictionaries',
+            text: '字典',
+            iconType: 'IconSettings',
+            path: '/system/dictionaries',
+            componenPath: 'pages/system/dictionaries',
+            isOut: 0,
+            isHide: 0,
+          },
+        ],
+      },
+    ]
+    dispatch(setMainMenu(arr))
+  }, [dispatch])
+
   // 判断导航选中
   useEffect(() => {
     if (location.pathname) {
@@ -85,6 +205,7 @@ const Home = () => {
     setTheme(key)
     dispatch(switchTheme(key))
   }
+
   const content = (
     <>
       <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
