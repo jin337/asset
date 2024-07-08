@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import {
   Button,
   Card,
@@ -15,10 +16,12 @@ import {
   Select,
 } from '@arco-design/web-react'
 import { IconPlus, IconMore } from '@arco-design/web-react/icon'
+import DynamicIcon from '../../components/DynamicIcon'
 
 const FormItem = Form.Item
 const TextArea = Input.TextArea
 const MenuSystem = () => {
+  const system = useSelector((state) => state.system)
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const [visible1, setVisible1] = useState(false)
@@ -58,38 +61,42 @@ const MenuSystem = () => {
       <Menu.Item key='4'>删除</Menu.Item>
     </Menu>
   )
+  // 菜单管理表头项
   const columns = [
     {
       title: '菜单名称',
-      dataIndex: 'name1',
+      dataIndex: 'text',
     },
     {
       title: '图标',
-      dataIndex: 'name2',
+      dataIndex: 'icon',
+      render: (text) => <DynamicIcon className='text-base' name={text} />,
     },
     {
       title: '排序',
-      dataIndex: 'name3',
+      dataIndex: 'sort',
     },
     {
       title: '权限标识',
-      dataIndex: 'name4',
+      dataIndex: 'itemKey',
     },
     {
       title: '请求地址',
-      dataIndex: 'name5',
+      dataIndex: 'path',
     },
     {
       title: '组件路径',
-      dataIndex: 'name6',
+      dataIndex: 'componenPath',
     },
     {
       title: '是否隐藏',
-      dataIndex: 'name7',
+      dataIndex: 'isHide',
+      render: (text) => (text === 1 ? '是' : '否'),
     },
     {
       title: '是否外链',
-      dataIndex: 'name7',
+      dataIndex: 'isOut',
+      render: (text) => (text === 1 ? '是' : '否'),
     },
     {
       title: '操作',
@@ -100,120 +107,6 @@ const MenuSystem = () => {
           <IconMore />
         </Dropdown>
       ),
-    },
-  ]
-  const data = [
-    {
-      key: '1',
-      name1: '工作台',
-      name2: 'dashboard',
-      name3: 1,
-      name4: 'dashboard',
-      name5: '/dashboard',
-      name6: 'src/dashboard',
-      name7: '否',
-    },
-    {
-      key: '2',
-      name1: '项目',
-      name2: 'project',
-      name3: 1,
-      name4: 'project',
-      name5: '/project',
-      name6: 'src/project',
-      name7: '否',
-    },
-    {
-      key: '3',
-      name1: '标准',
-      name2: 'standard',
-      name3: 1,
-      name4: 'standard',
-      name5: '/standard',
-      name6: 'src/standard',
-      name7: '否',
-    },
-    {
-      key: '4',
-      name1: '标准',
-      name2: 'standard',
-      name3: 1,
-      name4: 'standard',
-      name5: '/standard',
-      name6: 'src/standard',
-      name7: '否',
-    },
-    {
-      key: '5',
-      name1: '用户',
-      name2: 'user',
-      name3: 1,
-      name4: 'user',
-      name5: '/user',
-      name6: 'src/user',
-      name7: '否',
-    },
-    {
-      key: '6',
-      name1: '分析',
-      name2: 'analyse',
-      name3: 1,
-      name4: 'analyse',
-      name5: '/analyse',
-      name6: 'src/analyse',
-      name7: '否',
-    },
-    {
-      key: '7',
-      name1: '系统',
-      name2: 'system',
-      name3: 1,
-      name4: 'system',
-      name5: '/system',
-      name6: 'src/system',
-      name7: '否',
-      children: [
-        {
-          key: '7-1',
-          name1: '菜单',
-          name2: 'menu',
-          name3: 1,
-          name4: 'menu',
-          name5: '/system/menu',
-          name6: 'src/system/menu',
-          name7: '否',
-        },
-        {
-          key: '7-2',
-          name1: '部门',
-          name2: 'department',
-          name3: 1,
-          name4: 'department',
-          name5: '/system/department',
-          name6: 'src/system/department',
-          name7: '否',
-        },
-        {
-          key: '7-3',
-          name1: '角色',
-          name2: 'role',
-          name3: 1,
-          name4: 'role',
-          name5: '/system/role',
-          name6: 'src/system/role',
-          name7: '否',
-        },
-        {
-          key: '7-4',
-          name1: '字典',
-          name2: 'dictionaries',
-          name3: 1,
-          name4: 'dictionaries',
-          name5: '/system/dictionaries',
-          name6: 'src/system/dictionaries',
-          name7: '否',
-        },
-      ],
     },
   ]
 
@@ -286,7 +179,7 @@ const MenuSystem = () => {
         </Button>
       </div>
       <Card bordered={false} className='mt-5'>
-        <Table defaultExpandAllRows columns={columns} data={data} pagination={false} />
+        <Table defaultExpandAllRows columns={columns} data={system.mainMenu} pagination={false} />
       </Card>
 
       {/* 按钮详情 */}
@@ -379,7 +272,7 @@ const MenuSystem = () => {
           labelCol={{ style: { flexBasis: 120 } }}
           wrapperCol={{ style: { flexBasis: 'calc(100% - 120px)' } }}>
           <FormItem label='上级菜单' field='key1'>
-            <Select options={options} allowClear />
+            <Input placeholder='输入' disabled allowClear />
           </FormItem>
           <div className='flex justify-between'>
             <FormItem label='按钮名称' field='key2' required>
@@ -390,7 +283,7 @@ const MenuSystem = () => {
             </FormItem>
           </div>
           <FormItem label='显示排序' field='key9'>
-            <InputNumber mode='button' />
+            <InputNumber style={{ width: '41%' }} mode='button' />
           </FormItem>
           <FormItem label='描述' field='key10'>
             <TextArea placeholder='请输入内容' allowClear />

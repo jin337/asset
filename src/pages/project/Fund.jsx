@@ -355,44 +355,42 @@ const Fund = () => {
   ]
 
   // 合计
-  function summary(currentData) {
-    return (
-      <Table.Summary.Row>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>合计</Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name0), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name1), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name2), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name31), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name32), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name4), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name5), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name6), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name7), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell style={{ textAlign: 'center' }}>
-          {currentData.reduce((prev, next) => prev + Number(next.name0), 0)}
-        </Table.Summary.Cell>
-        <Table.Summary.Cell></Table.Summary.Cell>
-      </Table.Summary.Row>
-    )
-  }
+  const summary = (currentData) => (
+    <Table.Summary.Row>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>合计</Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name0), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name1), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name2), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name31), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name32), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name4), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name5), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name6), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name7), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell style={{ textAlign: 'center' }}>
+        {currentData.reduce((prev, next) => prev + Number(next.name0), 0)}.00
+      </Table.Summary.Cell>
+      <Table.Summary.Cell></Table.Summary.Cell>
+    </Table.Summary.Row>
+  )
 
   return (
     <>

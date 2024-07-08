@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import DynamicIcon from './DynamicIcon'
 
 const Menu = ({ items, header, select }) => {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ const Menu = ({ items, header, select }) => {
               active === item.itemKey ? 'text-blue-500 scale-105' : ''
             }`}
             onClick={() => selectHandler(item)}>
-            {item.icon}
+            <DynamicIcon className='text-2xl' name={item.icon} />
             <div className='text-sm mt-1'>{item.text}</div>
           </li>
         ))}
