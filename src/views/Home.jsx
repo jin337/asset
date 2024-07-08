@@ -215,20 +215,11 @@ const Home = () => {
       />
     </>
   )
+
   return (
     <Layout className='w-screen h-screen bg-neutral-100 dark:bg-neutral-950'>
       <Sider width={80} collapsible trigger={null} collapsed={collapse} collapsedWidth={0}>
-        <SystemMenu
-          select={menuSelect}
-          items={system.mainMenu}
-          header={
-            <Image
-              preview={false}
-              width={50}
-              src='https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/abstract.jpg'
-            />
-          }
-        />
+        <SystemMenu select={menuSelect} items={system.mainMenu} header={<Image preview={false} width={50} src={common.logo} />} />
       </Sider>
       <Layout>
         <Header className='dark:bg-[#232324] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
@@ -265,7 +256,7 @@ const Home = () => {
                   <Menu>
                     <Menu.Item key='2'>用户信息</Menu.Item>
                     <Menu.Item key='3' onClick={() => navigate('/login')}>
-                      退出
+                      退出登录
                     </Menu.Item>
                   </Menu>
                 }>

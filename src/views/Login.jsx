@@ -1,11 +1,14 @@
 import {} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Carousel, Form, Input, Button, Checkbox, Link } from '@arco-design/web-react'
+import { useSelector } from 'react-redux'
+import { Carousel, Form, Input, Button, Checkbox, Link, Image } from '@arco-design/web-react'
 import { IconUser, IconLock } from '@arco-design/web-react/icon'
 
 const FormItem = Form.Item
 const Login = () => {
+  const common = useSelector((state) => state.common)
   const navigate = useNavigate()
+
   return (
     <div className='flex justify-between h-dvh'>
       <div className='w-2/5'>
@@ -19,7 +22,12 @@ const Login = () => {
       <div className='w-3/5 flex justify-center items-center'>
         <div className='w-2/5'>
           <Form size='large' layout='vertical' initialValues={{ username: 'admin', password: 'admin' }}>
-            <FormItem className='text-3xl text-center'>登录</FormItem>
+            <FormItem>
+              <div className='flex flex-col items-center'>
+                <Image preview={false} width={100} src={common.logo} />
+                <p className='text-3xl mt-2'>登录</p>
+              </div>
+            </FormItem>
             <FormItem field='username'>
               <Input prefix={<IconUser />} placeholder='Username:admin' />
             </FormItem>
@@ -29,12 +37,12 @@ const Login = () => {
             <FormItem field='readme'>
               <div className='flex justify-between'>
                 <Checkbox>记住密码</Checkbox>
-                <Link href='#'>忘记密码</Link>
+                <Link href='/forget'>忘记密码</Link>
               </div>
             </FormItem>
             <FormItem>
               <Button type='primary' long onClick={() => navigate('/dashboard')}>
-                login
+                登录
               </Button>
             </FormItem>
           </Form>
