@@ -49,8 +49,8 @@
     "vite-plugin-compression": "^0.5.1"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint . --ext js,jsx,ts,tsx src --report-unused-disable-directives --max-warnings 0",
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --report-unused-disable-directives --max-warnings 0",
       "prettier --write"
     ]
   },
