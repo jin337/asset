@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
-import postcssPresetEnv from 'postcss-preset-env'
+import compression from 'vite-plugin-compression' // 代码压缩
+import legacy from '@vitejs/plugin-legacy' // js浏览器兼容
 
-import compression from 'vite-plugin-compression'
-import legacy from '@vitejs/plugin-legacy'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer' // css浏览器前缀
+import postcssPresetEnv from 'postcss-preset-env' // css浏览器兼容性
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,8 +31,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        chunkFileNames: 'assets/chunk/[name]-[hash].js',
-        entryFileNames: 'assets/chunk/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: 'assets/js/chunks/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
         manualChunks: {
           'chunk-vendor': ['react', 'react-dom', 'react-router-dom', 'react-redux'],

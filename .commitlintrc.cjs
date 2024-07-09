@@ -1,5 +1,9 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
+  rules: {
+    'subject-min-length': [2, 'always', 1],
+    'subject-max-length': [2, 'always', 100],
+  },
   messages: {
     type: '请选择提交的类型',
     subject: '请简要描述提交（必填）',
