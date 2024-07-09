@@ -8,9 +8,9 @@
     "dev:prod": "vite --mode prod",
     "build": "vite build",
     "build:prod": "vite build --mode prod",
-    "lint": "eslint . --ext js,jsx src --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepare": "husky && husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@arco-design/web-react": "^2.63.0",
@@ -49,7 +49,10 @@
     "vite-plugin-compression": "^0.5.1"
   },
   "lint-staged": {
-    "*.{js,jsx}": "npm run lint"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint . --ext js,jsx,ts,tsx src --report-unused-disable-directives --max-warnings 0",
+      "prettier --write"
+    ]
   },
   "config": {
     "commitizen": {
