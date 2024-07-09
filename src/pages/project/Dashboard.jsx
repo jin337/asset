@@ -1,60 +1,24 @@
 import { useState, useEffect } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import { Layout, Menu } from '@arco-design/web-react'
-import { IconSettings } from '@arco-design/web-react/icon'
+import DynamicIcon from '../../components/DynamicIcon'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item
 
-const itemsSider = [
-  {
-    itemKey: 'overview',
-    text: '概况',
-    icon: <IconSettings />,
-    path: '/project-dashboard/overview',
-  },
-  {
-    itemKey: 'fund',
-    text: '资金',
-    icon: <IconSettings />,
-    path: '/project-dashboard/fund',
-  },
-  {
-    itemKey: 'subentry',
-    text: '分项',
-    icon: <IconSettings />,
-    path: '/project-dashboard/subentry',
-  },
-  {
-    itemKey: 'contract',
-    text: '合同',
-    icon: <IconSettings />,
-    path: '/project-dashboard/contract',
-  },
-  {
-    itemKey: 'accord',
-    text: '依据',
-    icon: <IconSettings />,
-    path: '/project-dashboard/accord/document',
-  },
-  {
-    itemKey: 'member',
-    text: '成员',
-    icon: <IconSettings />,
-    path: '/project-dashboard/member',
-  },
-  {
-    itemKey: 'setting',
-    text: '配置',
-    icon: <IconSettings />,
-    path: '/project-dashboard/setting',
-  },
-]
-
 const ProjectDashboard = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const common = useSelector((state) => state.common)
+  const [itemsSider, setItemsSider] = useState([])
   const [selectedKey, setSelectKey] = useState([])
+
+  useEffect(() => {
+    const item = common.mainMenu?.find((e) => e.itemKey === 'project')
+    item && setItemsSider(item.children)
+  }, [common.mainMenu])
 
   useEffect(() => {
     if (location.pathname) {
@@ -65,7 +29,7 @@ const ProjectDashboard = () => {
       }
       item && setSelectKey([item.itemKey])
     }
-  }, [location])
+  }, [itemsSider, location])
 
   const onClickMenuItem = (key) => {
     setSelectKey([key])
@@ -75,13 +39,14 @@ const ProjectDashboard = () => {
       navigate(item.path)
     }
   }
+
   return (
     <Layout className='h-full'>
       <Sider width={120}>
         <Menu selectedKeys={selectedKey} onClickMenuItem={onClickMenuItem}>
           {itemsSider.map((item) => (
             <MenuItem key={item.itemKey}>
-              {item.icon}
+              <DynamicIcon name={item.iconType} />
               {item.text}
             </MenuItem>
           ))}

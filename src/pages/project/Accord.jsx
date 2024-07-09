@@ -12,11 +12,13 @@ const Accord = () => {
       title: '项目启动文件',
       key: '1',
       type: 1,
+      state: 1,
     },
     {
       title: '项目建设书批复',
       key: '2',
       type: 1,
+      state: 0,
     },
     {
       title: '道路工程施工',
@@ -26,11 +28,13 @@ const Accord = () => {
           title: '道路基层施工',
           key: '3-1',
           type: 2,
+          state: 1,
         },
         {
           title: '道路面层施工',
           key: '3-2',
           type: 2,
+          state: 0,
         },
       ],
     },
@@ -48,10 +52,10 @@ const Accord = () => {
   const onSelectTree = (e) => {
     const list = flattenArray(treeData, 'children')
     const item = list.find((i) => i.key === e[0])
-    if (item.type === 1) {
+    if (item?.type === 1) {
       navigate('/project-dashboard/accord/document')
     }
-    if (item.type === 2) {
+    if (item?.type === 2) {
       navigate('/project-dashboard/accord/construction')
     }
   }
@@ -63,7 +67,7 @@ const Accord = () => {
       </div>
 
       <div className='mt-5 flex content-between'>
-        <Card className='w-1/4' bordered={false}>
+        <Card className='w-1/5' bordered={false}>
           <div className='flex items-center'>
             <Input suffix={<IconSearch />} placeholder='请输入关键字' allowClear />
             <Dropdown droplist={dropList} position='br'>
@@ -74,14 +78,15 @@ const Accord = () => {
             className='mt-2'
             blockNode
             onSelect={onSelectTree}
-            defaultSelectedKeys={['1']}
+            // defaultSelectedKeys={['1']}
             treeData={treeData}
-            renderExtra={() => (
-              <IconCheckCircleFill style={{ position: 'absolute', right: 8, top: 10, color: '#3b82f6' }} />
-            )}></Tree>
+            renderExtra={(node) =>
+              node.isLeaf &&
+              node.state === 1 && <IconCheckCircleFill style={{ position: 'absolute', right: 8, top: 10, color: '#3b82f6' }} />
+            }></Tree>
         </Card>
 
-        <div className='ml-5 w-3/4'>
+        <div className='ml-5 w-4/5'>
           <Outlet />
         </div>
       </div>

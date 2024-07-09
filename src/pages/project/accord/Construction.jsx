@@ -109,7 +109,7 @@ const Construction = () => {
             <>
               <div className='my-2 ml-2 text-base'>施工前</div>
               {PDFList.slice(0, 3).map((item) => (
-                <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
+                <Checkbox className='w-32' style={{ margin: '0 19px 19px 0', padding: '8px' }} key={item.key} value={item.key}>
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
                     <div className='mt-2 truncate text-xs leading-6'>
@@ -123,7 +123,7 @@ const Construction = () => {
                   </div>
                 </Checkbox>
               ))}
-              <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '1rem' }}>
+              <label className='arco-checkbox w-1/6' style={{ marginRight: 0, position: 'absolute', marginTop: '20px' }}>
                 <Upload listType='picture-card' action='/'>
                   <div className='arco-upload-trigger-picture'>
                     <div className='arco-upload-trigger-picture-text'>
@@ -137,7 +137,7 @@ const Construction = () => {
             <>
               <div className='my-2 ml-2 text-base'>施工中</div>
               {PDFList.slice(3, 5).map((item) => (
-                <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
+                <Checkbox className='w-32' style={{ margin: '0 19px 19px 0', padding: '8px' }} key={item.key} value={item.key}>
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
                     <div className='mt-2 truncate text-xs leading-6'>
@@ -151,7 +151,7 @@ const Construction = () => {
                   </div>
                 </Checkbox>
               ))}
-              <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '1rem' }}>
+              <label className='arco-checkbox w-1/6' style={{ marginRight: 0, position: 'absolute', marginTop: '20px' }}>
                 <Upload listType='picture-card' action='/'>
                   <div className='arco-upload-trigger-picture'>
                     <div className='arco-upload-trigger-picture-text'>
@@ -165,7 +165,7 @@ const Construction = () => {
             <>
               <div className='my-2 ml-2 text-base'>施工后</div>
               {PDFList.slice(5, 8).map((item) => (
-                <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
+                <Checkbox className='w-32' style={{ margin: '0 19px 19px 0', padding: '8px' }} key={item.key} value={item.key}>
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
                     <div className='mt-2 truncate text-xs leading-6'>
@@ -179,7 +179,7 @@ const Construction = () => {
                   </div>
                 </Checkbox>
               ))}
-              <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '1rem' }}>
+              <label className='arco-checkbox w-1/6' style={{ marginRight: 0, position: 'absolute', marginTop: '20px' }}>
                 <Upload listType='picture-card' action='/'>
                   <div className='arco-upload-trigger-picture'>
                     <div className='arco-upload-trigger-picture-text'>

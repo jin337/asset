@@ -119,7 +119,7 @@ const Document = () => {
             <div className='checkall mt-4'>
               <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
                 {PDFList.map((item) => (
-                  <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
+                  <Checkbox className='w-32' style={{ margin: '0 18px 18px 0', padding: '8px' }} key={item.key} value={item.key}>
                     <div className='text-center'>
                       <div className='text-6xl'>{item.icon}</div>
                       <div className='truncate text-xs leading-6'>
@@ -133,7 +133,7 @@ const Document = () => {
                     </div>
                   </Checkbox>
                 ))}
-                <label className='arco-checkbox w-1/5' style={{ marginRight: 0, position: 'absolute', marginTop: '1rem' }}>
+                <label className='arco-checkbox w-1/6' style={{ marginRight: 0, position: 'absolute', marginTop: '20px' }}>
                   <Upload listType='picture-card' action='/'>
                     <div className='arco-upload-trigger-picture'>
                       <div className='arco-upload-trigger-picture-text'>

@@ -5,8 +5,8 @@ import { IconPlus, IconMore, IconSearch } from '@arco-design/web-react/icon'
 const FormItem = Form.Item
 
 const User = () => {
-  const [visible, setVisible] = useState(false)
   const [form] = Form.useForm()
+  const [visible, setVisible] = useState(false)
 
   const dropList = (
     <Menu>
