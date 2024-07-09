@@ -11,7 +11,7 @@ const Forget = () => {
   const [form] = Form.useForm()
 
   return (
-    <div className='flex items-center justify-center h-dvh'>
+    <div className='flex h-dvh items-center justify-center'>
       <div className='w-1/4'>
         <Form
           form={form}
@@ -26,7 +26,7 @@ const Forget = () => {
           <FormItem>
             <div className='flex flex-col items-center'>
               <Image preview={false} width={100} src={common.logo} />
-              <p className='text-3xl mt-2'>重置密码</p>
+              <p className='mt-2 text-3xl'>重置密码</p>
             </div>
           </FormItem>
           <FormItem className='text-neutral-400'>请通过输入用户名/手机号码/绑定邮箱重置你的帐号密码</FormItem>

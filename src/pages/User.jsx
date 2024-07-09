@@ -42,7 +42,7 @@ const User = () => {
     {
       title: '角色',
       dataIndex: 'name2',
-      render: (text) => <div className='text-sm text-blue-500 cursor-pointer'>{text}</div>,
+      render: (text) => <div className='cursor-pointer text-sm text-blue-500'>{text}</div>,
     },
     {
       title: '部门',

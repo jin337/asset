@@ -83,7 +83,7 @@ const CreateList = () => {
       title: '依据项名称',
       dataIndex: 'name1',
       render: (text) => {
-        return <div className='text-sm text-blue-500 font-bold cursor-pointer'>{text}</div>
+        return <div className='cursor-pointer text-sm font-bold text-blue-500'>{text}</div>
       },
     },
     {
@@ -214,7 +214,7 @@ const CreateList = () => {
   return (
     <div className='m-5'>
       <div className='flex items-center'>
-        <div className='text-2xl font-bold mr-6'>标准配置</div>
+        <div className='mr-6 text-2xl font-bold'>标准配置</div>
         <Breadcrumb style={{ fontSize: 16 }}>
           <BreadcrumbItem>载体办公设施建设</BreadcrumbItem>
           <BreadcrumbItem style={{ color: '#3b82f6' }}>载体办公设施建设1</BreadcrumbItem>
@@ -253,7 +253,7 @@ const CreateList = () => {
         </Card>
 
         <Card
-          className='w-3/4 ml-10'
+          className='ml-10 w-3/4'
           bordered={false}
           title='依据项'
           extra={

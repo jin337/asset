@@ -73,7 +73,7 @@ const Role = () => {
           </FormItem>
           <FormItem label='菜单权限' field='key2' required>
             <Tree
-              className='overflow-y-auto h-52'
+              className='h-52 overflow-y-auto'
               checkable
               treeData={system.mainMenu}
               fieldNames={{

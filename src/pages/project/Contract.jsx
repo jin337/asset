@@ -63,7 +63,7 @@ const Contract = () => {
       render: (text) => {
         return (
           <div
-            className='text-sm text-blue-500 cursor-pointer'
+            className='cursor-pointer text-sm text-blue-500'
             onClick={() => window.open('https://www.aconvert.com/samples/sample.pdf', '_blank')}>
             {text}
           </div>
@@ -99,7 +99,7 @@ const Contract = () => {
       dataIndex: 'name7',
       render: (text) => {
         return (
-          <div className='text-sm text-blue-500 cursor-pointer' onClick={() => setVisible1(true)}>
+          <div className='cursor-pointer text-sm text-blue-500' onClick={() => setVisible1(true)}>
             {text}
           </div>
         )
@@ -180,7 +180,7 @@ const Contract = () => {
       render: (text) => {
         return (
           <div
-            className='text-sm text-blue-500 cursor-pointer'
+            className='cursor-pointer text-sm text-blue-500'
             onClick={() => window.open('https://www.aconvert.com/samples/sample.pdf', '_blank')}>
             {text}
           </div>
@@ -384,7 +384,7 @@ const Contract = () => {
         onCancel={() => setVisible1(false)}>
         <Descriptions colon=' :' layout='inline-horizontal' size='large' column={2} data={DescriptionsData} />
 
-        <div className='flex mt-5'>
+        <div className='mt-5 flex'>
           {gridCardList.map((item) => (
             <Card bordered={false} key={item.key} className='w-1/3'>
               <div className='flex items-center'>
@@ -465,12 +465,12 @@ const Contract = () => {
               全选（{selectValue.length}/{PDFList.length}）
             </span>
           </Checkbox>
-          <div className='flex flex-wrap mt-3 checkall'>
+          <div className='checkall mt-3 flex flex-wrap'>
             <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
               {PDFList.map((item) =>
                 isList ? (
-                  <Checkbox key={item.key} value={item.key} className='w-full mb-1'>
-                    <div className='flex items-center p-1 mb-1'>
+                  <Checkbox key={item.key} value={item.key} className='mb-1 w-full'>
+                    <div className='mb-1 flex items-center p-1'>
                       <div className='text-5xl'>{item.icon}</div>
                       <div className='ml-2 w-11/12'>
                         <div className='truncate text-xs leading-6'>
@@ -480,7 +480,7 @@ const Contract = () => {
                             item.name
                           )}
                         </div>
-                        <div className='truncate text-xs text-neutral-400 mt-1'>{item.size}</div>
+                        <div className='mt-1 truncate text-xs text-neutral-400'>{item.size}</div>
                       </div>
                     </div>
                   </Checkbox>
@@ -488,7 +488,7 @@ const Contract = () => {
                   <Checkbox className='w-32' style={{ margin: '12px 12px 0', padding: '8px' }} key={item.key} value={item.key}>
                     <div className='text-center'>
                       <div className='text-7xl'>{item.icon}</div>
-                      <div className='truncate text-xs my-1 leading-6'>
+                      <div className='my-1 truncate text-xs leading-6'>
                         {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                           <Input defaultValue={item.name} size='mini' />
                         ) : (

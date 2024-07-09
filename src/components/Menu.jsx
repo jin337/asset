@@ -22,12 +22,12 @@ const Menu = ({ items, header, select }) => {
         {items.map((item) => (
           <li
             key={item.itemKey}
-            className={`text-center py-2 mt-2 cursor-pointer hover:scale-105 hover:text-blue-500 ${
-              active === item.itemKey ? 'text-blue-500 scale-105' : ''
+            className={`mt-2 cursor-pointer py-2 text-center hover:scale-105 hover:text-blue-500 ${
+              active === item.itemKey ? 'scale-105 text-blue-500' : ''
             }`}
             onClick={() => selectHandler(item)}>
             <DynamicIcon className='text-2xl' name={item.iconType} />
-            <div className='text-sm mt-1'>{item.text}</div>
+            <div className='mt-1 text-sm'>{item.text}</div>
           </li>
         ))}
       </ul>

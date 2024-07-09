@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   return (
-    <div className='flex justify-between h-dvh'>
+    <div className='flex h-dvh justify-between'>
       <div className='w-2/5'>
         <Carousel autoPlay={true} className='h-full'>
           <div className='bg-purple-400'></div>
@@ -20,7 +20,7 @@ const Login = () => {
           <div className='bg-red-400'></div>
         </Carousel>
       </div>
-      <div className='w-3/5 flex justify-center items-center'>
+      <div className='flex w-3/5 items-center justify-center'>
         <div className='w-2/5'>
           <Form
             form={form}
@@ -35,7 +35,7 @@ const Login = () => {
             <FormItem>
               <div className='flex flex-col items-center'>
                 <Image preview={false} width={100} src={common.logo} />
-                <p className='text-3xl mt-2'>登录</p>
+                <p className='mt-2 text-3xl'>登录</p>
               </div>
             </FormItem>
             <FormItem field='username' rules={[{ required: true }]}>

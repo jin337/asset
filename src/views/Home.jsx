@@ -232,20 +232,20 @@ const Home = () => {
   )
 
   return (
-    <Layout className='w-screen h-screen bg-neutral-100 dark:bg-neutral-950'>
+    <Layout className='h-screen w-screen bg-neutral-100 dark:bg-neutral-950'>
       <Sider width={80} collapsible trigger={null} collapsed={collapse} collapsedWidth={0}>
         <SystemMenu select={menuSelect} items={system.mainMenu} header={<Image preview={false} width={50} src={common.logo} />} />
       </Sider>
       <Layout>
-        <Header className='dark:bg-[#232324] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
-          <div className='flex justify-between items-center'>
+        <Header className='border-b bg-white px-6 py-4 dark:border-zinc-500/100 dark:bg-[#232324]'>
+          <div className='flex items-center justify-between'>
             <>
               {project.projectID ? (
                 <div className='flex items-center'>
                   {collapse ? (
-                    <IconMenu className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
+                    <IconMenu className='mr-2 cursor-pointer text-xl' onClick={() => setCollapse(!collapse)} />
                   ) : (
-                    <IconClose className='text-xl mr-2 cursor-pointer' onClick={() => setCollapse(!collapse)} />
+                    <IconClose className='mr-2 cursor-pointer text-xl' onClick={() => setCollapse(!collapse)} />
                   )}
                   <Breadcrumb maxCount='3'>
                     <Breadcrumb.Item>项目</Breadcrumb.Item>
@@ -278,9 +278,9 @@ const Home = () => {
                           size='small'
                           footer={
                             <div className='flex justify-around text-center'>
-                              <div className='w-1/2 text-sm text-blue-500 cursor-pointer'>已读</div>
+                              <div className='w-1/2 cursor-pointer text-sm text-blue-500'>已读</div>
                               <Divider type='vertical' />
-                              <div className='w-1/2 text-sm text-blue-500 cursor-pointer'>查看更多</div>
+                              <div className='w-1/2 cursor-pointer text-sm text-blue-500'>查看更多</div>
                             </div>
                           }
                           dataSource={[

@@ -87,7 +87,7 @@ const Dictionaries = () => {
           <Table columns={columns} data={data} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
         </Card>
 
-        <Card bordered={false} className='mt-5 w-1/2 ml-4' title='字典详情'>
+        <Card bordered={false} className='ml-4 mt-5 w-1/2' title='字典详情'>
           <Table columns={columnsDetails} data={dataDetails} pagination={{ showTotal: true, pageSize: 10, current: 1 }} />
         </Card>
       </div>

@@ -82,7 +82,7 @@ const Construction = () => {
       <Card bordered={false} title='道路工程施工/道路基层施工'>
         <div className='flex justify-between'>
           <Checkbox onChange={onChangeAll} checked={checkAll} indeterminate={indeterminate}>
-            <span className='text-sm ml-1'>
+            <span className='ml-1 text-sm'>
               全选（{selectValue.length}/{PDFList.length}）
             </span>
           </Checkbox>
@@ -104,15 +104,15 @@ const Construction = () => {
             )}
           </Space>
         </div>
-        <div className='flex flex-wrap checkall'>
+        <div className='checkall flex flex-wrap'>
           <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
             <>
-              <div className='text-base my-2 ml-2'>施工前</div>
+              <div className='my-2 ml-2 text-base'>施工前</div>
               {PDFList.slice(0, 3).map((item) => (
                 <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
-                    <div className='truncate text-xs leading-6 mt-2'>
+                    <div className='mt-2 truncate text-xs leading-6'>
                       {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                         <Input defaultValue={item.name} size='mini' />
                       ) : (
@@ -135,12 +135,12 @@ const Construction = () => {
             </>
 
             <>
-              <div className='text-base my-2 ml-2'>施工中</div>
+              <div className='my-2 ml-2 text-base'>施工中</div>
               {PDFList.slice(3, 5).map((item) => (
                 <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
-                    <div className='truncate text-xs leading-6 mt-2'>
+                    <div className='mt-2 truncate text-xs leading-6'>
                       {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                         <Input defaultValue={item.name} size='mini' />
                       ) : (
@@ -163,12 +163,12 @@ const Construction = () => {
             </>
 
             <>
-              <div className='text-base my-2 ml-2'>施工后</div>
+              <div className='my-2 ml-2 text-base'>施工后</div>
               {PDFList.slice(5, 8).map((item) => (
                 <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
                   <div className='text-center'>
                     <Image src={item.icon} alt={item.name} />
-                    <div className='truncate text-xs leading-6 mt-2'>
+                    <div className='mt-2 truncate text-xs leading-6'>
                       {selectValue.length === 1 && selectValue[0] === item.key && rename ? (
                         <Input defaultValue={item.name} size='mini' />
                       ) : (

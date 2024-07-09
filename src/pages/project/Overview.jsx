@@ -183,7 +183,7 @@ const Overview = () => {
     <>
       <div className='text-xl font-bold'>概况</div>
 
-      <div className='flex mt-5'>
+      <div className='mt-5 flex'>
         {gridCardList.map((item) => (
           <Card bordered={false} key={item.key} className='w-1/4'>
             <div className='flex items-center'>

@@ -59,7 +59,7 @@ const Project = () => {
       title: '项目名称',
       dataIndex: 'name1',
       render: (text, item) => (
-        <div className='text-sm text-blue-500 cursor-pointer' onClick={() => linkDetails(item)}>
+        <div className='cursor-pointer text-sm text-blue-500' onClick={() => linkDetails(item)}>
           {text}
         </div>
       ),
@@ -103,8 +103,8 @@ const Project = () => {
     <div className='m-5'>
       <div className='flex justify-between'>
         <div className='flex items-center'>
-          <div className='text-2xl font-bold mr-6'>项目管理</div>
-          <div className='text-base text-blue-500 font-bold'>全部项目（2）</div>
+          <div className='mr-6 text-2xl font-bold'>项目管理</div>
+          <div className='text-base font-bold text-blue-500'>全部项目（2）</div>
         </div>
         <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
           新建项目

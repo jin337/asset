@@ -88,13 +88,13 @@ const Document = () => {
         <>
           <div className='flex items-center'>
             <IconFile className='text-xl' />
-            <span className='text-base text-blue-500 ml-1'>批复文件</span>
+            <span className='ml-1 text-base text-blue-500'>批复文件</span>
           </div>
           <div className='ml-6'>
-            <div className='mt-1 mb-2 text-sm'>请上传批复文件的盖章电子件</div>
+            <div className='mb-2 mt-1 text-sm'>请上传批复文件的盖章电子件</div>
             <div className='flex justify-between'>
               <Checkbox onChange={onChangeAll} checked={checkAll} indeterminate={indeterminate}>
-                <span className='text-sm ml-1'>
+                <span className='ml-1 text-sm'>
                   全选（{selectValue.length}/{PDFList.length}）
                 </span>
               </Checkbox>
@@ -116,7 +116,7 @@ const Document = () => {
                 )}
               </Space>
             </div>
-            <div className='mt-4 checkall'>
+            <div className='checkall mt-4'>
               <Checkbox.Group value={selectValue} onChange={onChangeCheckbox}>
                 {PDFList.map((item) => (
                   <Checkbox className='w-32' style={{ margin: '0 9px 9px 0', padding: '8px' }} key={item.key} value={item.key}>
@@ -149,10 +149,10 @@ const Document = () => {
 
         {/* 批复信息 */}
         <>
-          <div className='flex items-center justify-between mt-5'>
+          <div className='mt-5 flex items-center justify-between'>
             <div className='flex items-center'>
               <IconEdit className='text-xl' />
-              <span className='text-base text-blue-500 ml-1'>批复信息</span>
+              <span className='ml-1 text-base text-blue-500'>批复信息</span>
             </div>
             {disabledForm ? (
               <Button type='text' size='small' onClick={() => setDisabledForm(false)}>

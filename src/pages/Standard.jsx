@@ -52,7 +52,7 @@ const Standard = () => {
       title: '标准名称',
       dataIndex: 'name2',
       render: (text) => (
-        <div className='text-sm text-blue-500 cursor-pointer' onClick={() => navigate('/standard/create-list')}>
+        <div className='cursor-pointer text-sm text-blue-500' onClick={() => navigate('/standard/create-list')}>
           {text}
         </div>
       ),
@@ -94,8 +94,8 @@ const Standard = () => {
     <div className='m-5'>
       <div className='flex justify-between'>
         <div className='flex items-center'>
-          <div className='text-2xl font-bold mr-6'>标准管理</div>
-          <div className='text-base text-blue-500 font-bold'>全部标准（2）</div>
+          <div className='mr-6 text-2xl font-bold'>标准管理</div>
+          <div className='text-base font-bold text-blue-500'>全部标准（2）</div>
         </div>
         <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
           新建标准

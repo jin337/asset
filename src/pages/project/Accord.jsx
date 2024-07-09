@@ -81,7 +81,7 @@ const Accord = () => {
             )}></Tree>
         </Card>
 
-        <div className='w-3/4 ml-5'>
+        <div className='ml-5 w-3/4'>
           <Outlet />
         </div>
       </div>
