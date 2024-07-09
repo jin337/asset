@@ -1,7 +1,7 @@
 ## 代码提交
 ```
 git add .
-git cz // 需要全局安装commitizen:npm i -g commitizen
+git cz  // 需要全局安装npm i -g commitizen
 git push origin 分支名
 ```
 
