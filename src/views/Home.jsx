@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { switchTheme } from '../store/reducers/common'
-import { setMainMenu } from '../store/reducers/system'
+import { switchTheme, setMainMenu } from '../store/reducers/common'
 import { setProjectID } from '../store/reducers/project'
 
 import {
@@ -43,7 +42,6 @@ const Home = () => {
   const dispatch = useDispatch()
   const location = useLocation()
   const common = useSelector((state) => state.common)
-  const system = useSelector((state) => state.system)
   const project = useSelector((state) => state.project)
 
   const [menuSelect, setMenuSelect] = useState()
@@ -173,9 +171,9 @@ const Home = () => {
   useEffect(() => {
     if (location.pathname) {
       let key = location.pathname
-      let item = system.mainMenu.find((e) => e.path === key)
+      let item = common.mainMenu.find((e) => e.path === key)
       if (!item) {
-        item = system.mainMenu.find((e) => key.includes(e.path))
+        item = common.mainMenu.find((e) => key.includes(e.path))
       }
       if (!key.includes('/project-dashboard/')) {
         dispatch(setProjectID(null))
@@ -184,7 +182,7 @@ const Home = () => {
       }
       item && setMenuSelect(item.itemKey)
     }
-  }, [dispatch, location, system.mainMenu])
+  }, [dispatch, location, common.mainMenu])
 
   // 判断主题
   useEffect(() => {
@@ -234,7 +232,7 @@ const Home = () => {
   return (
     <Layout className='h-screen w-screen bg-neutral-100 dark:bg-neutral-950'>
       <Sider width={80} collapsible trigger={null} collapsed={collapse} collapsedWidth={0}>
-        <SystemMenu select={menuSelect} items={system.mainMenu} header={<Image preview={false} width={50} src={common.logo} />} />
+        <SystemMenu select={menuSelect} items={common.mainMenu} header={<Image preview={false} width={50} src={common.logo} />} />
       </Sider>
       <Layout>
         <Header className='border-b bg-white px-6 py-4 dark:border-zinc-500/100 dark:bg-[#232324]'>

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   theme: 'light',
   logo: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/abstract.jpg',
+  mainMenu: [],
 }
 
 export const common = createSlice({
@@ -13,8 +14,11 @@ export const common = createSlice({
       sessionStorage.setItem('theme', action.payload)
       state.theme = action.payload
     },
+    setMainMenu: (state, action) => {
+      state.mainMenu = action.payload
+    },
   },
 })
 
-export const { switchTheme } = common.actions
+export const { switchTheme, setMainMenu } = common.actions
 export default common.reducer

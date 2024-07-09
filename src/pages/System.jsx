@@ -1,42 +1,25 @@
 import { useState, useEffect } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import { Layout, Menu } from '@arco-design/web-react'
-import { IconSettings } from '@arco-design/web-react/icon'
+import DynamicIcon from '../components/DynamicIcon'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item
 
-const itemsSider = [
-  {
-    itemKey: 'menu',
-    text: '菜单',
-    icon: <IconSettings />,
-    path: '/system/menu',
-  },
-  {
-    itemKey: 'role',
-    text: '角色',
-    icon: <IconSettings />,
-    path: '/system/role',
-  },
-  {
-    itemKey: 'department',
-    text: '部门',
-    icon: <IconSettings />,
-    path: '/system/department',
-  },
-  {
-    itemKey: 'dictionaries',
-    text: '字典',
-    icon: <IconSettings />,
-    path: '/system/dictionaries',
-  },
-]
-
 const System = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const common = useSelector((state) => state.common)
+  const [itemsSider, setItemsSider] = useState([])
+
   const [selectedKey, setSelectKey] = useState([])
+
+  useEffect(() => {
+    const item = common.mainMenu?.find((e) => e.itemKey === 'system')
+    item && setItemsSider(item.children)
+  }, [common.mainMenu])
 
   useEffect(() => {
     if (location.pathname) {
@@ -47,8 +30,9 @@ const System = () => {
       }
       item && setSelectKey([item.itemKey])
     }
-  }, [location])
+  }, [itemsSider, location])
 
+  // 选择菜单
   const onClickMenuItem = (key) => {
     setSelectKey([key])
 
@@ -57,13 +41,14 @@ const System = () => {
       navigate(item.path)
     }
   }
+
   return (
     <Layout className='h-full'>
       <Sider width={120}>
         <Menu selectedKeys={selectedKey} onClickMenuItem={onClickMenuItem}>
           {itemsSider.map((item) => (
             <MenuItem key={item.itemKey}>
-              {item.icon}
+              <DynamicIcon name={item.iconType} />
               {item.text}
             </MenuItem>
           ))}

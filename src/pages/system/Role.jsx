@@ -7,7 +7,7 @@ const FormItem = Form.Item
 const TextArea = Input.TextArea
 
 const Role = () => {
-  const system = useSelector((state) => state.system)
+  const common = useSelector((state) => state.common)
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
 
@@ -75,7 +75,7 @@ const Role = () => {
             <Tree
               className='h-52 overflow-y-auto'
               checkable
-              treeData={system.mainMenu}
+              treeData={common.mainMenu}
               fieldNames={{
                 key: 'itemKey',
                 title: 'text',

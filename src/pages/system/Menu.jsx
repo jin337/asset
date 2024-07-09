@@ -22,7 +22,7 @@ const FormItem = Form.Item
 const TextArea = Input.TextArea
 
 const MenuSystem = () => {
-  const system = useSelector((state) => state.system)
+  const common = useSelector((state) => state.common)
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const [visible1, setVisible1] = useState(false)
@@ -105,7 +105,7 @@ const MenuSystem = () => {
       align: 'center',
       render: () => (
         <Dropdown droplist={dropList} position='br'>
-          <DynamicIcon name='IconMore' />
+          <IconMore />
         </Dropdown>
       ),
     },
@@ -176,12 +176,12 @@ const MenuSystem = () => {
     <>
       <div className='flex justify-between'>
         <div className='text-2xl font-bold'>菜单管理</div>
-        <Button icon={<DynamicIcon name='IconPlus' />} type='primary' onClick={() => setVisible(true)}>
+        <Button icon={<IconPlus />} type='primary' onClick={() => setVisible(true)}>
           新建菜单
         </Button>
       </div>
       <Card bordered={false} className='mt-5'>
-        <Table defaultExpandAllRows columns={columns} data={system.mainMenu} pagination={false} />
+        <Table defaultExpandAllRows columns={columns} data={common.mainMenu} pagination={false} />
       </Card>
 
       {/* 按钮详情 */}
